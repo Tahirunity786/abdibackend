@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    {% block optionalcss %}{% endblock optionalcss %}
+    <link rel="stylesheet" href="{% static 'css/stlye.css' %}">
+    <title>{% block title %}{% endblock title %}</title>
+    <style>
+        {% block css %}{% endblock css %}
+    </style>
+</head>
+
+<body class="bg-light contact-page">
+    <!-- Contact Page -->
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-3" href="/"><img src="{% static 'media/logo.png' %}" alt="" height="50" width="150"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 pt-2">
+                    <li class="nav-item ms-3">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown ms-3">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/hospitrack/bed-reservation">Bed Reservation</a></li>
+                            <li><a class="dropdown-item" href="/hospitrack/doctor-appointments">Doctor Appointment</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="/hospitrack/about-us">About</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="nav-link" href="/hospitrack/contact-us">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <li class="nav-item dropdown ps-4 pe-4" style="list-style: none; ">
+                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu" style="left: -110px;">
+                            <li><a class="dropdown-item" href="/hospitrack/user/profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="fqs-s">Help</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/hospitrack/user/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ps-4 pe-4" style="list-style: none; border-left: 2px solid black;">
+                        <button class="nav-link" style="border: none; background-color: transparent; outline: none;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                            </svg>
+                        </button>
+
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock content %}
+    <div class="container">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-dark">Home</a></li>
+             
+                <li class="nav-item"><a href="/hospitrack/bed-reservation" class="nav-link px-2 text-dark">Bed Reservation</a></li>
+                <li class="nav-item"><a href="/hospitrack/doctor-appointments" class="nav-link px-2 text-dark">Doctor Appointment</a></li>
+                <li class="nav-item"><a href="/hospitrack/about-us" class="nav-link px-2 text-dark">About</a></li>
+                <li class="nav-item"><a href="/hospitrack/contact-us" class="nav-link px-2 text-dark">Contact</a></li>
+            </ul>
+            <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
+        </footer>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    {% block optionaljs %}{% endblock optionaljs %}
+
+    <script>
+        {% block js %} {% endblock js %}
+
+
+    </script>
+
+</body>
+
+</html>

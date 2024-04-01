@@ -1,0 +1,457 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block optionalcss %}
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+{% endblock optionalcss %}
+{% block title %}Profile{% endblock title %}
+{% block content %}
+
+    <main class="container">
+        <div class="row">
+            <div class="col-lg-4 mt-5">
+                <div class="cam-div">
+                    <label for="pEFP" id="cmdbtn" role="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-camera-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"></path>
+                            <path
+                                d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0">
+                            </path>
+                        </svg>
+                    </label>
+                </div>
+
+                <img class="rounded-2 bg-body shadow" src="https://dummyimage.com/270x250/000/fff" alt="img">
+
+
+
+                <h3 class="mt-2">Lorem Ipsum</h3>
+                <p>john@gmail.com</p>
+                <p>June 5, 1992</p>
+            </div>
+            <div class="col-lg-8">
+                <div class="row mt-5 link-sec owl-carousel owl-theme">
+                    <div class="col">
+                        <a href="#" class="ac-btn p-1" id="account">Account Setting</a>
+                    </div>
+                    <div class="col">
+                        <a href="#" class="ac-btn p-1" id="profile">Profile Setting</a>
+                    </div>
+                    <div class="col">
+                        <a href="#" class="ac-btn p-1" id="bed-reserve">Reservements</a>
+                    </div>
+                    <div class="col">
+                        <a href="#" class="ac-btn p-1" id="dc-appoint">Appointments</a>
+                    </div>
+                    <div class="col">
+                        <a href="#" class="ac-btn p-1" id="cont">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Account Setting -->
+
+                <div id="account-setting" style="display: block;" class="mt-3 ms-1">
+                    <h2>Account Setting</h2>
+
+                    <form>
+                        <div class="mb-2 mt-2">
+                            <label for="exampleInputPassword1" class="form-label">Previous Password*</label>
+                            <input type="password" class="form-control ac-inp" id="exampleInputPassword1">
+
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword2" class="form-label">New Password*</label>
+                            <input type="password" class="form-control ac-inp" id="exampleInputPassword2">
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword3" class="form-label">Confirm Password*</label>
+                            <input type="password" class="form-control ac-inp" id="exampleInputPassword3">
+                        </div>
+
+                        <button type="submit" class="btn mt-2 u-btn">Update</button>
+                    </form>
+                </div>
+
+                <!-- Profile Setting -->
+                <div id="profile-setting" style="display: none;" class="mt-2">
+                    <h2>Profile Setting</h2>
+
+                    <form>
+                        <div class="row mt-3 r-sec" style="padding-right: 0px;">
+                            <div class="col-lg-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control p-inp1" id="firstName">
+
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control p-inp1" id="lastName">
+
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <label for="userName" class="form-label">Username</label>
+                            <input type="text" class="form-control p-inp2" id="userName">
+
+                        </div>
+                        <div class="mt-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control p-inp2" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+
+                        </div>
+                        <div class="mt-3">
+                            <label for="Birthday" class="form-label">Birthday</label>
+                            <input type="date" class="form-control p-inp2" id="Birthday">
+                        </div>
+                        <button type="submit" class="btn mt-3 upd-profile">Submit</button>
+                    </form>
+                </div>
+<!-- Bed Reservements -->
+
+                <div id="bed-reservements" style="display: none;" class="mt-3">
+                    <h2 class="mb-3">Bed Reservements</h2>
+                    <div class="d-flex justify-content-between align-items-center mt-2 bg-light p-3  rounded"
+                        data-id="9">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+
+                                <img src="https://dummyimage.com/60x60/4f4d4f/fff" alt="image" class="rounded-circle"
+                                    height="60px" width="60px" style="object-fit: cover;">
+
+                            </div>
+                            <div class="details ms-3">
+                                <h6 style="margin-bottom: 5px !important;">Visiting the Great Wall of China</h6>
+                                <p style="margin-bottom: 0px !important;">Marvel at one of the greatest architectural
+                                    achievements in history by visiting the Great Wall of China, spanning thousands of
+                                    miles across rugged terrain.</p>
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div class="dropdown">
+                                <button style="background-color: white; border-radius: 50px; border: none;"
+                                    data-bs-toggle="dropdown" aria-expanded="false" class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                        <path
+                                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0">
+                                        </path>
+                                    </svg>
+                                </button>
+
+                                <ul class="dropdown-menu">
+                                    <li id="update-item"><!-- HTML for the modal trigger -->
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#detaillist">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Detail
+                                        </a>
+                                    </li>
+                                    <li id="update-item"><!-- HTML for the modal trigger -->
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#updateModal">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="green" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                                                    </path>
+                                                    <path fill-rule="evenodd"
+                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Update
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/core/public/lists/del/9/">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="red" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Delete
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" href="/core/public/lists/marked/9/">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-flag-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Mark as complete
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+<!-- Doctor Appointments -->
+                <div id="doc-appointments" style="display: none;" class="mt-3">
+                    <h2 class="mb-3">Doctor Appointments</h2>
+
+                    <div class="d-flex justify-content-between align-items-center mt-2 bg-light p-3  rounded"
+                        data-id="9">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+
+                                <img src="https://dummyimage.com/60x60/4f4d4f/fff" alt="image" class="rounded-circle"
+                                    height="60px" width="60px" style="object-fit: cover;">
+
+                            </div>
+                            <div class="details ms-3">
+                                <h6 style="margin-bottom: 5px !important;">Visiting the Great Wall of China</h6>
+                                <p style="margin-bottom: 0px !important;">Marvel at one of the greatest architectural
+                                    achievements in history by visiting the Great Wall of China, spanning thousands of
+                                    miles across rugged terrain.</p>
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div class="dropdown">
+                                <button style="background-color: white; border-radius: 50px; border: none;"
+                                    data-bs-toggle="dropdown" aria-expanded="false" class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                        <path
+                                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0">
+                                        </path>
+                                    </svg>
+                                </button>
+
+                                <ul class="dropdown-menu">
+                                    <li id="update-item"><!-- HTML for the modal trigger -->
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#detaillist">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Detail
+                                        </a>
+                                    </li>
+                                    <li id="update-item"><!-- HTML for the modal trigger -->
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#updateModal">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="green" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                                                    </path>
+                                                    <path fill-rule="evenodd"
+                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Update
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/core/public/lists/del/9/">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="red" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Delete
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" href="/core/public/lists/marked/9/">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-flag-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Mark as complete
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="contact" style="display: none;" class="mt-3">
+                    <h2 class="mb-3">Contact</h2>
+
+                    <div class="d-flex justify-content-between align-items-center mt-2 bg-light p-3  rounded"
+                        data-id="9">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+
+                                <img src="https://dummyimage.com/60x60/4f4d4f/fff" alt="image" class="rounded-circle"
+                                    height="60px" width="60px" style="object-fit: cover;">
+
+                            </div>
+                            <div class="details ms-3">
+                                <h6 style="margin-bottom: 5px !important;">Visiting the Great Wall of China</h6>
+                                <p style="margin-bottom: 0px !important;">Marvel at one of the greatest architectural
+                                    achievements in history by visiting the Great Wall of China, spanning thousands of
+                                    miles across rugged terrain.</p>
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div class="dropdown">
+                                <button style="background-color: white; border-radius: 50px; border: none;"
+                                    data-bs-toggle="dropdown" aria-expanded="false" class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                        <path
+                                            d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0">
+                                        </path>
+                                    </svg>
+                                </button>
+
+                                <ul class="dropdown-menu">
+                                    <li id="update-item"><!-- HTML for the modal trigger -->
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#detaillist">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Detail
+                                        </a>
+                                    </li>
+                                    <li id="update-item"><!-- HTML for the modal trigger -->
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#updateModal">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="green" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                                                    </path>
+                                                    <path fill-rule="evenodd"
+                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Update
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/core/public/lists/del/9/">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="red" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Delete
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" href="/core/public/lists/marked/9/">
+                                            <span class="me-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-flag-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                            Mark as complete
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </main>
+    {% endblock content %}
+
+    
+    {% block optionaljs %}
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/brain.js' %}"></script>
+    {% endblock optionaljs %}
+
+    {% block js %} 
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            nav: false,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: true
+                },
+                400: {
+                    items: 3,
+                    nav: false
+                },
+                575: {
+                    items: 3,
+                    nav: false
+                },
+                767: {
+                    items: 3,
+                    nav: false
+                },
+                900: {
+                    items: 3,
+                    nav: false
+                },
+                992: {
+                    items: 4,
+                    nav: true,
+                    loop: false
+                },
+                1000: {
+                    items: 5,
+                    nav: true,
+                    loop: false
+                }
+            }
+        })
+        {% endblock js %}

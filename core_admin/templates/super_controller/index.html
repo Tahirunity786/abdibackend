@@ -1,0 +1,267 @@
+{% extends "super_controller/base/base_controller.html" %}
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+
+
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+
+            <!-- Sales Card -->
+            <div class="col-lg-6 col-md-6">
+              <div class="card info-card sales-card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Lorem</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Lorem</a></li>
+                    <li><a class="dropdown-item" href="#">Lorem</a></li>
+                    <li><a class="dropdown-item" href="#">Lorem</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Lorem <span>| Lorem</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+                      </svg>
+
+                    </div>
+                    <div class="ps-3">
+                      <h5>Total Patients</h5>
+                      <span class="text-success small pt-1 fw-bold">Lorem</span> <span
+                        class="text-muted small pt-2 ps-1">Lorem</span>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Sales Card -->
+
+            <!-- Revenue Card -->
+            <div class="col-lg-6 col-md-6">
+              <div class="card info-card revenue-card">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Lorem</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Lorem</a></li>
+                    <li><a class="dropdown-item" href="#">Lorem</a></li>
+                    <li><a class="dropdown-item" href="#">Lorem</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Lorem <span>| Lorem</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+                      </svg>
+                    </div>
+                    <div class="ps-3">
+                      <h5>Total Doctors</h5>
+                      <span class="text-success small pt-1 fw-bold">Lorem</span> <span
+                        class="text-muted small pt-2 ps-1">Lorem</span>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End Revenue Card -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <div class="card" style="overflow-y: scroll;">
+      <div class="card-body">
+        <h5 class="card-title">Bed Reservements</h5>
+
+        <!-- Default Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Doctor</th>
+              <th scope="col">Time</th>
+              <th scope="col">Status</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td><button class="border-0" style="background-color: transparent;"><span
+                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
+              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                      class="bi bi-x-lg"></i></button></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td><button class="border-0" style="background-color: transparent;"><span
+                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
+              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                      class="bi bi-x-lg"></i></button></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td><button class="border-0" style="background-color: transparent;"><span
+                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
+              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                      class="bi bi-x-lg"></i></button></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td><button class="border-0" style="background-color: transparent;"><span
+                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
+              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                      class="bi bi-x-lg"></i></button></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td><button class="border-0" style="background-color: transparent;"><span
+                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
+              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                      class="bi bi-x-lg"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- End Default Table Example -->
+      </div>
+    </div>
+
+
+
+    <div class="card" style="overflow-y: scroll;">
+      <div class="card-body">
+        <h5 class="card-title">Doctor Appointments</h5>
+
+        <!-- Default Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Doctor</th>
+              <th scope="col">Time</th>
+              <th scope="col">Status</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td><button class="border-0" style="background-color: transparent;"><span
+                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
+              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                      class="bi bi-x-lg"></i></button></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td><button class="border-0" style="background-color: transparent;"><span
+                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
+              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                      class="bi bi-x-lg"></i></button></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td><button class="border-0" style="background-color: transparent;"><span
+                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
+              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                      class="bi bi-x-lg"></i></button></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td><button class="border-0" style="background-color: transparent;"><span
+                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
+              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                      class="bi bi-x-lg"></i></button></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td><button class="border-0" style="background-color: transparent;"><span
+                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
+              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                      class="bi bi-x-lg"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- End Default Table Example -->
+      </div>
+    </div>
+  </main><!-- End #main -->
+
+  {% endblock content %}

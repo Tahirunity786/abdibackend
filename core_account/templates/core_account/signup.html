@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <!-- Character set and viewport settings -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title -->
+    <title>Register</title>
+    <!-- Font Awesome stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body class="log-body">
+    <!-- Content container -->
+    <div class="content">
+        <!-- Button group to switch between registration forms -->
+        <div class="button-group">
+            <button class="switchPatient btnActive">Patient</button>
+            <button class="switchDoctor">Doctor</button>
+            <button class="switchAdmin">Admin</button>
+        </div>
+
+        <!-- Patient registration form -->
+        <form action="/hospitrack/user/signup/Patient/"  method="post" class="signpatient-form mt-5">
+            <!-- First name and last name fields -->
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input1">First Name</label>
+                        <input type="text" id="Input1" name="firstname" required>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input2">Last Name</label>
+                        <input type="text" id="Input2" name="lastname" required>
+                    </div>
+                </div>
+            </div>
+            <!-- Email and phone number fields -->
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input3">Email</label>
+                        <input type="email" id="Input3" name="email" required>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input4">Phone no</label>
+                        <input type="text" id="Input4" name="phno" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Password, confirm password, and terms agreement -->
+            <div class="input-box">
+                <label for="signinPassword">Password</label>
+                <input type="password" id="signinPassword" name="pass" required>
+                <span class="passIcon" id="signinPassIcon"><i class="fa-solid fa-eye text-light"></i></span>
+            </div>
+            <div class="input-box">
+                <label for="signinPassword2">Confirm Password</label>
+                <input type="password" id="signinPassword2" name="rpass" required>
+                <span class="passIcon" id="signinPassIcon2"><i class="fa-solid fa-eye text-light"></i></span>
+            </div>
+            <div class="check-box">
+                <input type="checkbox" id="signinCheckBox" name="chkbx" required>
+                <label for="signinCheckBox">I accept the all <a href="#">terms and conditions</a></label>
+            </div>
+
+            <!-- Submit button and additional links -->
+            <input type="submit" value="sign in" id="btn-signin">
+            <hr>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <p>Already have an account? <a href="/hospitrack/user/login">Login</a></p>
+                </div>
+            </div>
+        </form>
+
+        <!-- Doctor registration form (initially hidden) -->
+        <form action="/hospitrack/user/signup/Doctor/" method="post" class="signdoctor-form display-none mt-5">
+            <!-- First name and last name fields -->
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input1">First Name</label>
+                        <input type="text" id="Input1" name="firstname" required>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input2">Last Name</label>
+                        <input type="text" id="Input2" name="lastname" required>
+                    </div>
+                </div>
+            </div>
+            <!-- Email and phone number fields -->
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input3">Email</label>
+                        <input type="email" id="Input3" name="email" required>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input4">Phone no</label>
+                        <input type="text" id="Input4" name="phno" required>
+                    </div>
+                </div>
+            </div>
+            <!-- Speciality and CV upload fields -->
+            <div class="row mb-3">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input5">License number</label>
+                        <input type="number" class="form-control" name="licensenumber" id="Input5" required>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <label for="Input6" style="margin-bottom: 10px; display: block;">Upload CV</label>
+                    <input type="file" id="Input6" name="cvfile" required>
+                </div>
+            </div>
+            <!-- Password, confirm password, and terms agreement -->
+            <div class="input-box">
+                <label for="signinPassword">Password</label>
+                <input type="password" id="signinPassword" name="pass" required>
+                <span class="passIcon" id="signinPassIcon"><i class="fa-solid fa-eye text-light"></i></span>
+            </div>
+            <div class="input-box">
+                <label for="signinPassword2">Confirm Password</label>
+                <input type="password" id="signinPassword2" name="rpass" required>
+                <span class="passIcon" id="signinPassIcon2"><i class="fa-solid fa-eye text-light"></i></span>
+            </div>
+            <div class="check-box">
+                <input type="checkbox" id="signinCheckBox" name="chkbx">
+                <label for="signinCheckBox">I accept the all <a href="#">terms and conditions</a></label>
+            </div>
+            <!-- Submit button and additional links -->
+            <input type="submit" value="sign in" id="btn-signin">
+            <hr>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <p>Already have an account? <a href="/hospitrack/user/login">Login</a></p>
+                </div>
+            </div>
+        </form>
+
+        <!-- Admin registration form (initially hidden) -->
+        <form action="/hospitrack/user/signup/Admin/"  method="post" class="signadmin-form display-none mt-5">
+            <!-- First name and last name fields -->
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input1">First Name</label>
+                        <input type="text" name="firstname" id="Input1" required>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input2">Last Name</label>
+                        <input type="text" id="Input2" name="lastname" required>
+                    </div>
+                </div>
+            </div>
+            <!-- Email and phone number fields -->
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input3">Email</label>
+                        <input type="email" id="Input3" name="email" required>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="input-box">
+                        <label for="Input4">Phone no</label>
+                        <input type="text" id="Input4" name="phno" required>
+                    </div>
+                </div>
+            </div>
+            <!-- Special code field -->
+            <div class="input-box">
+                <label for="Input5">Special Code</label>
+                <input type="text" id="Input5" name="specialcode" required placeholder="10 digits code">
+            </div>
+            <!-- Password, confirm password, and terms agreement -->
+            <div class="input-box">
+                <label for="signinPassword">Password</label>
+                <input type="password" id="signinPassword" name="pass" required>
+                <span class="passIcon" id="signinPassIcon"><i class="fa-solid fa-eye text-light"></i></span>
+            </div>
+            <div class="input-box">
+                <label for="signinPassword2">Confirm Password</label>
+                <input type="password" id="signinPassword2" name="rpass" required>
+                <span class="passIcon" id="signinPassIcon2"><i class="fa-solid fa-eye text-light"></i></span>
+            </div>
+            <div class="check-box">
+                <input type="checkbox" id="signinCheckBox">
+                <label for="signinCheckBox">I accept the all <a href="#">terms and conditions</a></label>
+            </div>
+            <!-- Submit button and additional links -->
+            <input type="submit" value="sign in" id="btn-signin">
+            <hr>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <p>Already have an account? <a href="#">Login</a></p>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/brain.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+{% extends 'base/base.html' %}
+{% block title %} Home {% endblock %}
+{% load static %}
+{% block optionalcss %}
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+{% endblock optionalcss %}
+
+{% block css_style %}
+<style>
+    .fa-solid {
+        font-size: 26px;
+    }
+
+    .fa-solid[data-count]:after {
+        position: absolute;
+        right: 0%;
+        top: 1%;
+        content: attr(data-count);
+        font-size: 36%;
+        padding: .6em;
+        border-radius: 999px;
+        line-height: .75em;
+        color: white;
+        background: rgba(255, 0, 0, .85);
+        text-align: center;
+        min-width: 2em;
+        font-weight: bold;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+<main class="container mt-5">
+    <div class="row h-100 w-100">
+        <div class="col-lg-7 align-items-center p-5">
+            <div class="mb-3">
+
+                <h2 style="color: #040273">Welcome to our Bookings</h2>
+            </div>
+            <div class="mb-3">
+                <h1 style="font-size: 4rem; ;">Book an appointment</h1>
+            </div>
+            <div style="margin-bottom: 50px;">
+
+                <p class="fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero voluptatem
+                    asperiores eligendi labore, repellendus eius consequuntur iste officia iusto ut quo quia
+                    ipsa, pariatur rem optio tempore. Est, iure commodi?</p>
+
+            </div>
+            <div class="mb-5">
+                <a href="/hospitrack/doctor-appointments" class="btn-a rounded-3" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;">Book
+                    now</a>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <img src="{% static 'media/hero-removebg-preview.png' %}" alt="" class="img-fluid ">
+        </div>
+    </div>
+</main>
+</div>
+<section class="p-3" style="margin-bottom: 70px;">
+    <h2 class="text-center fs-1">About Us</h2>
+    <div class="super-divider"></div>
+    <div class="container">
+        <div class="row gy-3">
+            <div class="col-lg-4">
+                <h2 class="fw-normal line-height-1_4 mb-4">Reservement &amp; Appointments For <span
+                        class="fw-medium">Patients</span></h2>
+                <p class="text-muted mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio fugit
+                    molestiae minima.</p>
+                <p class="f-17 text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        style="color: #040273; margin-right: 10px;" fill="currentColor" class="bi bi-clipboard-plus"
+                        viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7" />
+                        <path
+                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
+                        <path
+                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
+                    </svg> Doctors Appointment</p>
+                <p class="f-17 text-muted"><svg xmlns="http://www.w3.org/2000/svg" fill="#040273" width="25" height="25"
+                        style="margin-right: 10px;" viewBox="0 0 256 256">
+                        <rect width="256" height="256" fill="none"></rect>
+                        <line x1="32" y1="216" x2="224" y2="216" fill="none" stroke="#000000" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="16"></line>
+                        <path d="M168,72H88A40,40,0,0,0,48,112v56" fill="none" stroke="#000000" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="16"></path>
+                        <path d="M208,168v-56a40,40,0,0,0-40-40H88" fill="none" stroke="#000000" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="16"></path>
+                        <line x1="88" y1="168" x2="168" y2="168" fill="none" stroke="#000000" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="16"></line>
+                        <line x1="88" y1="112" x2="168" y2="112" fill="none" stroke="#000000" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="16"></line>
+                    </svg>
+                    Bed Reservements</p>
+
+                <a href="/hospitrack/about-us" class="read-more f-18">More Information <span class="ms-2 right-icon f-24">→</span></a>
+            </div>
+            <div class="col-lg-4">
+                <div class="card border-0">
+                    <div class="bg-soft-primary about-img rounded">
+                        <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" alt=""
+                            class="img-fluid d-block mx-auto">
+                    </div>
+                    <div class="mt-3 ps-3 pe-3">
+                        <p class="text-uppercase text-muted mb-2 f-13">Hospital</p>
+                        <h4 class="f-18">Doctor Appointments</h4>
+                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
+                            recusandae suscipit eaque nemo.</p>
+                        <a href="/hospitrack/about-us#reservations" class="read-more">Read More <span class="ms-2 right-icon">→</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card border-0">
+                    <div class="bg-soft-info about-img rounded">
+                        <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" alt=""
+                            class="img-fluid d-block mx-auto">
+                    </div>
+                    <div class="mt-3 ps-3 pe-3">
+                        <p class="text-uppercase text-muted mb-2 f-13">Hospital</p>
+                        <h4 class="f-18">Bed Reservements</h4>
+                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
+                            recusandae suscipit eaque nemo.</p>
+                        <a href="/hospitrack/about-us#aboutus" class="read-more">Read More <span class="ms-2 right-icon">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="p-5" style="margin-bottom: 70px;">
+    <h2 class="text-center fs-1">Services</h2>
+    <div class="super-divider"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 pt-4">
+                <div class="card" style="width: 75%; margin: auto;">
+                    <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Doctor Appointment</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of the card's content.</p>
+                        <a href="/hospitrack/doctor-appointments" class="btn btn-primary w-100">Book Appointment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6 col-sm-12">
+                <h3 class="mb-4 text-center">Reserve a Bed</h3>
+                <div class="owl-carousel owl-theme">
+                    <div>
+                        <div class="card" style="width: 75%; margin: auto;">
+                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Bed no 1</h5>
+                                <p class="card-text">Reserve your bed.</p>
+                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card" style="width: 75%; margin: auto;">
+                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Bed no 1</h5>
+                                <p class="card-text">Reserve your bed.</p>
+                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card" style="width: 75%; margin: auto;">
+                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Bed no 1</h5>
+                                <p class="card-text">Reserve your bed.</p>
+                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card" style="width: 75%; margin: auto;">
+                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Bed no 1</h5>
+                                <p class="card-text">Reserve your bed.</p>
+                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card" style="width: 75%; margin: auto;">
+                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Bed no 1</h5>
+                                <p class="card-text">Reserve your bed.</p>
+                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card" style="width: 75%; margin: auto;">
+                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Bed no 1</h5>
+                                <p class="card-text">Reserve your bed.</p>
+                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card" style="width: 75%; margin: auto;">
+                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Bed no 1</h5>
+                                <p class="card-text">Reserve your bed.</p>
+                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mt-4 mb-4">
+                    <a href="/hospitrack/bed-reservation"
+                        class="btn btn-primary pt-2 pb-2 ps-5 pe-5  m-auto d-flex justify-content-center align-items-center"
+                        style="width: 50%;"><span class="me-2">See all</span> <span><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="p-5" style="margin-bottom: 70px;">
+    <h2 class="text-center fs-1">Testimolish</h2>
+    <div class="super-divider"></div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+            <div class="card" style="width: 100%; text-align: center; margin: auto;">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <img src="https://dummyimage.com/80x80/bfbfbf/3d3d3d" alt="image" class="rounded-pill">
+                    </div>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Lorem Ipsum</h6>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates dolorum
+                        vero, veniam pariatur repudiandae earum ratione. </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+            <div class="card" style="width: 100%; text-align: center; margin: auto;">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <img src="https://dummyimage.com/80x80/bfbfbf/3d3d3d" alt="image" class="rounded-pill">
+                    </div>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Lorem Ipsum</h6>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates dolorum
+                        vero, veniam pariatur repudiandae earum ratione. </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+            <div class="card" style="width: 100%; text-align: center; margin: auto;">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <img src="https://dummyimage.com/80x80/bfbfbf/3d3d3d" alt="image" class="rounded-pill">
+                    </div>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Lorem Ipsum</h6>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates dolorum
+                        vero, veniam pariatur repudiandae earum ratione. </p>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+<section style="margin-bottom: 80px;">
+    <h2 class="text-center fs-1">Contact Us</h2>
+    <div class="super-divider"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="mb-4">
+                    <h4>Email</h4>
+                    <p>abc@gmail.com</p>
+                </div>
+                <div class="mb-4">
+                    <h4>Phone no</h4>
+                    <p>+x xxx xxxxxxxx</p>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <form action="#" method="post">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="mb-3">
+                                <label for="Input1" class="form-label">Full name</label>
+                                <input type="text" class="form-control" id="Input1">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="mb-3">
+                                <label for="Input2" class="form-label">Last name</label>
+                                <input type="text" class="form-control" id="Input2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="mb-3">
+                                <label for="Input3" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="Input3" aria-describedby="emailHelp">
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="mb-3">
+                                <label for="Input2" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="Input2">
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                    style="resize: none;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <button class="btn btn-primary pt-2 pb-2 ps-5 pe-5">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}
+{% block optionaljs %}
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+{% endblock optionaljs %}
+{% block js %}
+$('.owl-carousel').owlCarousel({
+loop: true,
+margin: 10,
+responsiveClass: true,
+nav: false,
+responsive: {
+0: {
+items: 1,
+nav: true
+},
+600: {
+items: 2,
+nav: false
+},
+1000: {
+items: 2,
+nav: true,
+loop: false
+}
+}
+})
+
+
+{% endblock js %}

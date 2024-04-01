@@ -1,0 +1,84 @@
+{% extends "super_controller/base/base_controller.html" %}
+{% block title %}Appointments{% endblock title %}
+
+{% block content %}
+  
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Appointments</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Appointments</li>
+          
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+   
+    <div class="card" style="overflow-y: scroll;">
+      <div class="card-body">
+        <h5 class="card-title">Default Table</h5>
+
+        <!-- Default Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Doctor</th>
+              <th scope="col">Time</th>
+              <th scope="col">Status</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
+              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
+              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
+              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
+              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td>Lorem</td>
+              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
+              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- End Default Table Example -->
+      </div>
+    </div>
+  </main><!-- End #main -->
+  {% endblock content %}

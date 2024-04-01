@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-utilities.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>Login</title>
+
+    <style>
+        .button-group {
+            margin-bottom: 30px;
+        }
+
+        .button-group .switchSignin,
+        .button-group .switchSignup {
+            text-transform: uppercase;
+            font-size: 18px;
+            background: transparent;
+
+            padding: 10px 2px;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            margin-right: 30px;
+            transition: .5s;
+        }
+
+
+        .button-group .btnActive {
+
+            border-bottom: 2px solid #0805a5;
+        }
+
+        .link .f-pass {
+            font-size: 12px;
+            margin-top: 20px;
+            text-transform: capitalize;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            transition: .5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-content bg-light">
+        <!-- Button group for switching between User and Admin -->
+        <div class="button-group">
+            <button class="switchSignin btnActive">User</button>
+            <!-- Button for signing in as User (initially active) -->
+            <button class="switchSignup">Admin</button> <!-- Button for signing in as Admin -->
+        </div>
+
+        <!-- Sign-in form -->
+        <form action="/hospitrack/user/login" method="post" class="signin-form">
+            {% csrf_token %}
+            <!-- Email input box -->
+            <div class="input-box">
+                <label for="signinEmail">Email</label>
+                <input type="email" id="signinEmail" name="email" required>
+            </div>
+            <!-- Password input box -->
+            <div class="input-box">
+                <label for="signinPassword">Password</label>
+                <input type="password" id="signinPassword" name ="password" required>
+                <span class="passIcon" id="signinPassIconi"><i class="fa-solid fa-eye"></i></span>
+                <!-- Eye icon for showing password -->
+            </div>
+            <!-- Checkbox for "Remember me" -->
+            <div class="check-box">
+                <input type="checkbox" id="signinCheckBox">
+                <label for="signinCheckBox">Remember me</label>
+            </div>
+
+            <!-- Submit button -->
+            <input type="submit" value="sign in" id="btn-signin">
+
+           
+            <!-- Forgot password link -->
+            <div class="link">
+                <a href="#" class="f-pass text-primary">Forgot password?</a>
+            </div>
+            <!-- Sign in link -->
+            <div class="text-center mt-2">
+                <p>Don't have an account? <a href="/hospitrack/user/signup" class="text-primary">SignUp</a></p>
+            </div>
+        </form>
+
+        <!-- Sign-up form (initially hidden) -->
+        <form action="#" class="signup-form display-none">
+            <!-- Email input box -->
+            <div class="input-box">
+                <label for="signinEmail">Email</label>
+                <input type="email" id="signinEmail" required>
+            </div>
+            <!-- Password input box -->
+            <div class="input-box">
+                <label for="signinPassword">Password</label>
+                <input type="password" id="signinPassword" required>
+                <span class="passIcon" id="signinPassIconi"><i class="fa-solid fa-eye"></i></span>
+                <!-- Eye icon for showing password -->
+            </div>
+            <!-- Checkbox for "Remember me" -->
+            <div class="check-box">
+                <input type="checkbox" id="signinCheckBox">
+                <label for="signinCheckBox">Remember me</label>
+            </div>
+
+            <!-- Submit button -->
+            <input type="submit" value="sign in" id="btn-signin">
+
+            <!-- Forgot password link -->
+            <div>
+                <a href="#" class="f-pass">Forgot password?</a>
+            </div>
+            <!-- Sign in link -->
+            <div class="text-center mt-2">
+                <p>Don't have an account? <a href="#">SignUp</a></p>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/brain.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,246 @@
+@font-face {
+    font-family: Lato;
+    src: url(../font/Lato-Regular.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
+    font-family: Lato;
+
+}
+
+.log-body {
+    background: url('../media/hero-1-bg-img.png');
+    background-position: center;
+    /* background-size: cover; */
+    height: 100vh;
+    /* width: 100%; */
+    padding: 50px;
+    background-repeat: no-repeat;
+}
+
+.display-block {
+    display: block;
+}
+
+.display-none {
+    display: none;
+}
+
+.login-content {
+    width: 400px;
+    padding: 40px;
+   
+    background-color: whitesmoke;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.content {
+    width: 600px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 40px;
+    background-color: whitesmoke;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input[type="file"]::file-selector-button {
+    border-radius: 4px;
+    padding: 0 16px;
+    height: 40px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+    margin-right: 16px;
+    transition: background-color 200ms;
+  }
+  
+  /* file upload button hover state */
+  input[type="file"]::file-selector-button:hover {
+    background-color: #f3f4f6;
+  }
+  
+  /* file upload button active state */
+  input[type="file"]::file-selector-button:active {
+    background-color: #e5e7eb;
+  }
+  
+
+.button-group {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.button-group .switchPatient,
+.button-group .switchDoctor,
+.button-group .switchAdmin {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    background: transparent;
+    color: black;
+    padding: 10px 2px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    margin-right: 30px;
+    transition: .5s;
+}
+
+.button-group .switchPatient,
+.button-group .switchDoctor,
+.button-group .switchAdmin {
+    color: black;
+}
+
+.button-group .btnActive {
+    color: #0805a5;
+    border-bottom: 2px solid #0805a5;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-box input {
+    padding: 10px 20px;
+    border-radius: 20px;
+    width: 100%;
+    background: white;
+    color: black;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.input-box label,
+.check-box label {
+    color: black;
+    letter-spacing: 1px;
+}
+
+.check-box {
+    padding-left: 15px;
+}
+
+.check-box label {
+    cursor: pointer;
+    padding-left: 5px;
+}
+
+.passIcon {
+    padding: 5px;
+    color: black;
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    cursor: pointer;
+}
+
+#btn-signin,
+#btn-signup {
+    padding: 10px 20px;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: capitalize;
+    width: 100%;
+    border-radius: 20px;
+    background: #0805a5;
+    color: rgb(255, 255, 255);
+    transition: .5s;
+}
+
+#btn-signin:hover,
+#btn-signup:hover {
+    background: #040273;
+}
+
+.signin-form a {
+    color: rgb(255, 255, 255, .7);
+    font-size: 12px;
+    margin-top: 20px;
+    text-transform: capitalize;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.signin-form a:hover {
+    color: rgb(221, 79, 27);
+}
+
+.signin-form hr {
+    height: 1px;
+    background: rgb(255, 255, 255, .7);
+    margin-top: 20px;
+}
+
+
+.f-pass {
+
+    font-size: 12px;
+    margin-top: 20px;
+    text-transform: capitalize;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.f-pass {
+
+    font-size: 12px;
+    margin-top: 20px;
+    text-transform: capitalize;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.signin-form a:hover {
+    color: #040273;
+}
+
+.signin-form hr {
+    height: 1px;
+
+    margin-top: 20px;
+    /* background-color: #0805a5; */
+}
+
+@media screen and (min-width: 390px) and (max-width: 440px) {
+    /* CSS rules for screens between 600px and 900px */
+    .content {
+        width: 365px;
+       
+    }
+  }
+@media screen and (min-width: 345px) and (max-width: 390px) {
+    /* CSS rules for screens between 600px and 900px */
+    .content {
+        width: 320px;
+        
+    }
+  }
+@media screen and (min-width: 300px) and (max-width: 345px) {
+    /* CSS rules for screens between 600px and 900px */
+    .content {
+        width: 290px;
+        
+    }
+  }

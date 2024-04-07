@@ -22,6 +22,12 @@
 <body class="log-body">
     <!-- Content container -->
     <div class="content">
+        {% for message in messages  %} 
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message : </strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %} 
         <!-- Button group to switch between registration forms -->
         <div class="button-group">
             <button class="switchPatient btnActive">Patient</button>
@@ -93,7 +99,7 @@
         </form>
 
         <!-- Doctor registration form (initially hidden) -->
-        <form action="/hospitrack/user/signup/Doctor/" method="post" class="signdoctor-form display-none mt-5">
+        <form action="/hospitrack/user/signup/Doctor/" method="post" class="signdoctor-form display-none mt-5" enctype="multipart/form-data">
             <!-- First name and last name fields -->
             {% csrf_token %}
             <div class="row">
@@ -137,6 +143,18 @@
                     <label for="Input6" style="margin-bottom: 10px; display: block;">Upload CV</label>
                     <input type="file" id="Input6" name="cvfile" required>
                 </div>
+            </div>
+            <div class="input-box">
+                <label for="Input7" class="form-label">Speciality</label>
+                <select class="form-select rounded-4 pt-3 pb-3" name="spc" aria-label="Default select example">
+                    <option selected>Select a Speciality</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Dermatology">Dermatology</option>
+                    <option value="Endocrinology">Endocrinology</option>
+                    <option value="Gastroenterology">Gastroenterology</option>
+                    <option value="Ophthalmology">Ophthalmology</option>
+                </select>
+                
             </div>
             <!-- Password, confirm password, and terms agreement -->
             <div class="input-box">
@@ -216,8 +234,8 @@
                 <span class="passIcon" id="signinPassIcon2"><i class="fa-solid fa-eye text-light"></i></span>
             </div>
             <div class="check-box">
-                <input type="checkbox" id="signinCheckBox">
-                <label for="signinCheckBox">I accept the all <a href="#">terms and conditions</a></label>
+                <input type="checkbox" id="signinCheckBox" name="chkbx">
+                <label for="signinCheckBox">I accept the all terms and conditions</label>
             </div>
             <!-- Submit button and additional links -->
             <input type="submit" value="sign in" id="btn-signin">

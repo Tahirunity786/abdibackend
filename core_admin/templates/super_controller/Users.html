@@ -10,69 +10,131 @@
       <h1>Users</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
+          <li class="breadcrumb-item"><a href="/controller/dashboard">Home</a></li>
+          <li class="breadcrumb-item">Users Management</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
 
-    <div class="card" style="overflow-y: scroll;">
+    <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Default Table</h5>
+        <h5 class="card-title">Patients</h5>
 
         <!-- Default Table -->
         <table class="table">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Doctor</th>
-              <th scope="col">Time</th>
-              <th scope="col">Status</th>
-              <th scope="col">Update</th>
+              <th scope="col">Username</th>
+              <th scope="col">Full name</th>
+              <th scope="col">Email</th>
+              <th scope="col">DOB</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Mobile No</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
+            {% for Pat in patient %}
             <tr>
-              <th scope="row">1</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{Pat.username}}</td>
+              <td>{{Pat.first_name}}{{Pat.last_name}}</td>
+              <td>{{Pat.email}}</td>
+              <td>{{Pat.date_of_birth}}</td>
+              <td>{{Pat.gender}}</td>
+              <td>{{Pat.mobile_number}}</td>
+              
+              <td> <a href="/controller/user/del/{{Pat.id}}/" class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></a></td>
             </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <!-- End Default Table Example -->
+      </div>
+    </div>
+    {% for message in messages  %} 
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>Message : </strong> {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+        {% endfor %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Doctors</h5>
+
+        <!-- Default Table -->
+        <table class="table">
+          <thead>
             <tr>
-              <th scope="row">2</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">Full name</th>
+              <th scope="col">Email</th>
+              <th scope="col">DOB</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Mobile No</th>
+              <th scope="col">Licence no</th>
+              <th scope="col">CV Files</th>
+              <th scope="col">Verified</th>
+              <th scope="col">Delete</th>
             </tr>
+          </thead>
+          <tbody>
+            {% for DOC in doctor %}
             <tr>
-              <th scope="row">3</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{DOC.username}}</td>
+              <td>{{DOC.first_name}}{{Pat.last_name}}</td>
+              <td>{{DOC.email}}</td>
+              <td>{{DOC.date_of_birth}}</td>
+              <td>{{DOC.gender}}</td>
+              <td>{{DOC.mobile_number}}</td>
+              <td>{{DOC.license_number}}</td>
+              <td><a href="/media/{{ DOC.doctor_cv }}">File <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+              </svg></a></td>
+              <td>{{DOC.medical_verified}}</td>
+              
+              <td> <a href="/controller/user/del/{{DOC.id}}/" class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></a></td>
             </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <!-- End Default Table Example -->
+      </div>
+    </div>
+    <div class="card" >
+      <div class="card-body">
+        <h5 class="card-title">Admins</h5>
+
+        <!-- Default Table -->
+        <table class="table">
+          <thead>
             <tr>
-              <th scope="row">4</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">Full name</th>
+              <th scope="col">Email</th>
+              <th scope="col">DOB</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Mobile No</th>
             </tr>
+          </thead>
+          <tbody>
             <tr>
-              <th scope="row">5</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
+              {% for ADM in admin %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{ADM.username}}</td>
+              <td>{{ADM.first_name}}{{Pat.last_name}}</td>
+              <td>{{ADM.email}}</td>
+              <td>{{ADM.date_of_birth}}</td>
+              <td>{{ADM.gender}}</td>
+              <td>{{ADM.mobile_number}}</td>
+            </tr>
+            {% endfor %}
             </tr>
           </tbody>
         </table>

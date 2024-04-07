@@ -2,7 +2,7 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
-
+{% if request.user.account_type == "Admin" %}
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -310,5 +310,7 @@
     </section>
 
   </main><!-- End #main -->
-
+  {% else %}
+  <h1 class=" text-center" style="margin-top: 150px; margin-bottom: 150px;">You have not permission to access this page</h1>
+   {% endif %}
   {% endblock content %}

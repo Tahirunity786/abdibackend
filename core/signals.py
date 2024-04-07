@@ -1,42 +1,13 @@
+import random
+import string
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from channels.layers import get_channel_layer
-from asgiref.sync import async_to_sync
-from .models import Notification
+from core.models import Contact
 
-@receiver(post_save, sender=Notification)
-def notification_created(sender, instance, created, **kwargs):
-    print("Checking")
+@receiver(post_save, sender=Contact)
+def generate_ticket_number(sender, instance, created, **kwargs):
+    # Generate a unique 16-digit ticket number if the instance is newly created
     if created:
-        print("Checked")
-        channel_layer = get_channel_layer()
-        print(channel_layer)
-        notification_type = instance.notification_type
-        print(notification_type)
-        if notification_type == 'reservation':
-            # Send notification to admin
-            async_to_sync(channel_layer.group_send)(
-                'admin_notifications',  # Change to appropriate group name
-                {
-                    "type": "send_notification",
-                    "message": instance.message
-                }
-            )
-        elif notification_type == 'appointment_booking':
-            # Send notification to doctor
-            async_to_sync(channel_layer.group_send)(
-                'doctor_notifications',  # Change to appropriate group name
-                {
-                    "type": "send_notification",
-                    "message": instance.message
-                }
-            )
-        elif notification_type == 'admin_notification':
-            # Send notification to all users
-            async_to_sync(channel_layer.group_send)(
-                'public_room',
-                {
-                    "type": "send_notification",
-                    "message": instance.message
-                }
-            )
+        ticket_number = ''.join(random.choices(string.digits, k=16))
+        instance.contact_ticket = ticket_number
+        instance.save()  # Save the instance after assigning the ticket number

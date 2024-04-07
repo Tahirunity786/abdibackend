@@ -36,10 +36,10 @@
         <div class="col-lg-7 align-items-center p-5">
             <div class="mb-3">
 
-                <h2 style="color: #040273">Welcome to our Bookings</h2>
+                <h2 style="color: #040273">Welcome to HospiTrack</h2>
             </div>
             <div class="mb-3">
-                <h1 style="font-size: 4rem; ;">Book an appointment</h1>
+                <h1 style="font-size: 3.5rem; ;">Book an appointment</h1>
             </div>
             <div style="margin-bottom: 50px;">
 
@@ -135,6 +135,7 @@
     <div class="super-divider"></div>
     <div class="container-fluid">
         <div class="row">
+            {% if request.user.account_type == "Patient" %}
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4 pt-4">
                 <div class="card" style="width: 75%; margin: auto;">
                     <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
@@ -149,76 +150,19 @@
             <div class="col-lg-8 col-md-6 col-sm-12">
                 <h3 class="mb-4 text-center">Reserve a Bed</h3>
                 <div class="owl-carousel owl-theme">
+                    {% for i in beds %}
                     <div>
                         <div class="card" style="width: 75%; margin: auto;">
                             <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Bed no 1</h5>
-                                <p class="card-text">Reserve your bed.</p>
-                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
+                                <h5 class="card-title">{{i.room_no}}</h5>
+                                <p class="card-text">{{i.bed_no}}</p>
+                                <button class=" reserve-btn btn btn-primary w-100" data-id="{{i.id}}" data-bs-toggle="modal" data-bs-target="#bedreservation">Reserve me</button>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="card" style="width: 75%; margin: auto;">
-                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Bed no 1</h5>
-                                <p class="card-text">Reserve your bed.</p>
-                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card" style="width: 75%; margin: auto;">
-                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Bed no 1</h5>
-                                <p class="card-text">Reserve your bed.</p>
-                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card" style="width: 75%; margin: auto;">
-                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Bed no 1</h5>
-                                <p class="card-text">Reserve your bed.</p>
-                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card" style="width: 75%; margin: auto;">
-                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Bed no 1</h5>
-                                <p class="card-text">Reserve your bed.</p>
-                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card" style="width: 75%; margin: auto;">
-                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Bed no 1</h5>
-                                <p class="card-text">Reserve your bed.</p>
-                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card" style="width: 75%; margin: auto;">
-                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Bed no 1</h5>
-                                <p class="card-text">Reserve your bed.</p>
-                                <a href="#" class="btn btn-primary w-100">Reserve me</a>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    
 
                 </div>
                 <div class="mt-4 mb-4">
@@ -234,6 +178,49 @@
                     </a>
                 </div>
             </div>
+            {% elif request.user.account_type == "Doctor" %}
+            <div class="col-xl-12">
+               
+                <div class="owl-carousel owl-theme">
+                    {% for i in beds %}
+                    <div>
+                        <div class="card" style="width: 75%; margin: auto;">
+                            <img src="https://dummyimage.com/600x400/bfbfbf/3d3d3d" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{i.room_no}}</h5>
+                                <p class="card-text">{{i.bed_no}}</p>
+                                <button class=" reserve-btn btn btn-primary w-100" data-id="{{i.id}}" data-bs-toggle="modal" data-bs-target="#bedreservation">Reserve me</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="mt-4 mb-4">
+                    <a href="/hospitrack/bed-reservation"
+                        class="btn btn-primary pt-2 pb-2 ps-5 pe-5  m-auto d-flex justify-content-center align-items-center"
+                        style="width: 50%;"><span class="me-2">See all</span> <span><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            {% elif request.user.account_type == "Admin" %}
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <img src="{% static 'media/hero.jpg' %}" style="height: 100%; width: 100%;" class="rounded-2" alt="">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 ps-4 pt-2">
+                    <h3 class="mb-4 ">Book an appointment from a Professional Doctor</h3>
+                    <p class="fs-5">Booking a professional doctor guarantees you access to top-tier medical expertise, providing peace of mind and quality care for your health concerns.</p>
+                    <div class="spacer mt-5"></div>
+                    <a href="/hospitrack/doctor-appointments" class="btn btn-primary btn-lg">Book an Appointment</a>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </section>
@@ -302,41 +289,42 @@
                 </div>
             </div>
             <div class="col-lg-9">
-                <form action="#" method="post">
+                <form action="/hospitrack/contact-us" method="post">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12">
                             <div class="mb-3">
                                 <label for="Input1" class="form-label">Full name</label>
-                                <input type="text" class="form-control" id="Input1">
+                                <input type="text" class="form-control"  name="fullname" id="Input1">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">
                             <div class="mb-3">
-                                <label for="Input2" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="Input2">
+                                <label for="Input2" class="form-label">Email address</label>
+                                <input type="email" class="form-control" name="email" id="Input2" aria-describedby="emailHelp">
+                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12">
                             <div class="mb-3">
-                                <label for="Input3" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="Input3" aria-describedby="emailHelp">
-                                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
-                                </div>
+                                <label for="Input3" class="form-label">Phone no</label>
+                                <input type="tel" class="form-control" name="phno" id="Input3">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">
                             <div class="mb-3">
-                                <label for="Input2" class="form-label">Subject</label>
-                                <input type="text" class="form-control" id="Input2">
+                                <label for="Input4" class="form-label">Subject</label>
+                                <input type="text" name="subject" class="form-control" id="Input4">
                             </div>
                         </div>
 
                         <div class="col-xl-12">
                             <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                <label for="exampleFormControlTextarea1"  class="form-label">Message</label>
+                                <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="5"
                                     style="resize: none;"></textarea>
                             </div>
                         </div>
@@ -352,11 +340,97 @@
     </div>
 
 </section>
+<div class="modal fade" id="bedreservation" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="bedtitle"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="bedbody">
+
+            </div>
+            
+        </div>
+    </div>
+</div>
 {% endblock %}
 {% block optionaljs %}
 <script src="{% static 'js/owl.carousel.min.js' %}"></script>
 {% endblock optionaljs %}
 {% block js %}
+$(document).ready(function() {
+    $('.reserve-btn').click(function() {
+        const bedbody = document.getElementById("bedbody");
+        const bedtitle = document.getElementById("bedtitle");
+        var bedId = $(this).data('id');
+        var csrftoken = getCookie('csrftoken');
+        
+        // Send AJAX request to the server
+        $.ajax({
+            url: '/hospitrack/bed-viewer', // Update with your server endpoint
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken,
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({
+                'bed_id': bedId,
+                // Additional data can be sent here if needed
+            }),
+            success: function(response) {
+                bedtitle.innerText = response.bedno;
+                bedbody.innerHTML = `
+                    <div class="row mb-4">
+                        <div class="col-lg-7 col-md-6 col-sm-12">
+                            <h5>Description</h5>
+                            <div class="card">
+                                <div class="card-body p-4">
+                                    <div class="row mb-4">
+                                        <div class="col-xl-12">
+                                            <p>${response.description}</p>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-6 col-sm-12">
+                            <form action="/hospitrack/bed-reservation-agent/${response.id}/" method="post">
+                                {% csrf_token %}
+                               
+                                <label for="msgans" class="form-label">Tell us why you need to reserve:</label>
+                                <textarea class="form-control mb-3" required name="reason" id="msgans" cols="30" rows="10"></textarea>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                `;
+            },
+            error: function(xhr, status, error) {
+                // Handle errors if any
+                console.error('Error:', error);
+            }
+        });
+    });
+});
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 $('.owl-carousel').owlCarousel({
 loop: true,
 margin: 10,

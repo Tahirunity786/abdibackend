@@ -3,6 +3,7 @@
 
 {% load static %}
 {% block content %}
+{% if request.user.account_type == "Patient" or request.user.account_type == "Doctor" %}
 <main class="container mt-5">
     <div class="row">
         <div class="col-lg-3 col-md-9 col-sm-12 pt-2 pb-2 ps-4 pe-4 bg-light" style="height: 500px;">
@@ -13,184 +14,281 @@
                 <div class="mb-4">
                     <h5 class="mb-3">Filters by Room</h5>
                     <ul style="list-style: none;">
-                        <li class="mb-2"><span><input type="checkbox" id="input1" class="me-2"></span><label
-                                style="font-weight: 600; cursor: pointer;" for="input1">Room 1</label></li>
-                        <li class="mb-2"><span><input type="checkbox" id="input2" class="me-2"></span><label
-                                style="font-weight: 600; cursor: pointer;" for="input2">Room 2</label></li>
-                        <li class="mb-2"><span><input type="checkbox" id="input3" class="me-2"></span><label
-                                style="font-weight: 600; cursor: pointer;" for="input3">Room 3</label></li>
-                        <li class="mb-2"><span><input type="checkbox" id="input4" class="me-2"></span><label
-                                style="font-weight: 600; cursor: pointer;" for="input4">Room 4</label></li>
+                        <li class="mb-2"><span><input type="checkbox" name="Room no 1" id="input1" class="me-2"></span><label
+                                style="font-weight: 600; cursor: pointer;" for="input1">Room no 1</label></li>
+                        <li class="mb-2"><span><input type="checkbox" name="Room no 2" id="input2" class="me-2"></span><label
+                                style="font-weight: 600; cursor: pointer;" for="input2">Room no 2</label></li>
+                        <li class="mb-2"><span><input type="checkbox" name="Room no 3" id="input3" class="me-2"></span><label
+                                style="font-weight: 600; cursor: pointer;" for="input3">Room no 3</label></li>
+                        <li class="mb-2"><span><input type="checkbox" name="Room no 4" id="input4" class="me-2"></span><label
+                                style="font-weight: 600; cursor: pointer;" for="input4">Room no 4</label></li>
+                        <li class="mb-2"><span><input type="checkbox" name="Room no 5" id="input5" class="me-2"></span><label
+                                style="font-weight: 600; cursor: pointer;" for="input5">Room no 5</label></li>
                     </ul>
                 </div>
                 <div class="mb-3">
                     <h5 class="mb-3">Available Bed</h5>
                     <ul style="list-style: none;">
-                        <li class="mb-2"><span><input type="checkbox" id="input5" class="me-2"></span><label
-                                style="font-weight: 600; cursor: pointer;" for="input5"> Show Available Beds</label>
+                        <li class="mb-2"><span><input type="checkbox" name="Available" id="input6" class="me-2"></span><label
+                                style="font-weight: 600; cursor: pointer;" for="input6"> Show Available Beds</label>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="col-lg-9 col-md-9 col-sm-12">
+            {% for message in messages  %} 
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>Message : </strong> {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+        {% endfor %}
             <div class="row mb-5">
                 <div class="col-lg-8 col-md-8 sol-sm-8">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-dark" type="submit">Search</button>
-                    </form>
+     
+                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search beds" aria-label="Search">
+
+                       
+
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 text-end">
-                    <p class="fs-5">Available Beds (100)</p>
+                    <p class="fs-5">Available Beds ({{beds_count}})</p>
                 </div>
             </div>
 
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Room no 1</div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <button class="btn btn-dark w-100">Reserve me</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Room no 2</div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <button class="btn btn-dark w-100">Reserve me</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Room no 2</div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <button class="btn btn-dark w-100">Reserve me</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Room no 2</div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <button class="btn btn-dark w-100">Reserve me</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Room no 2</div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <button class="btn btn-dark w-100">Reserve me</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Room no 2</div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <button class="btn btn-dark w-100">Reserve me</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Room no 3</div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <button class="btn btn-dark w-100">Reserve me</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Room no 4</div>
-                        <div class="card-body text-dark">
-                            <h5 class="card-title">Dark card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <button class="btn btn-dark w-100">Reserve me</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4" id="results">
+                {% for bed in beds %}
+    <div class="col">
+        <div class="card border-dark mb-3" style="max-width: 18rem;" data-id="{{ bed.id }}">
+            <div class="card-header">{{ bed.room_no }}</div>
+            <div class="card-body text-dark">
+                <h5 class="card-title">{{ bed.bed_no }}</h5>
+                <p class="card-text">{{ bed.description }}</p>
+                {% if bed.reservation.status == "Pending" or bed.reservation.status == "Reserve" %}
+                    {% comment %} Bed is reserved {% endcomment %}
+                    <button class="btn btn-danger w-100" disabled>Reserved</button>
+                {% else %}
+                    {% comment %} Bed is available {% endcomment %}
+                    <button class="btn btn-dark w-100 reserve-btn" data-id="{{ bed.id }}" data-bs-toggle="modal" data-bs-target="#bedreservation">Reserve me</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endfor %}
+            
+
             </div>
         </div>
     </div>
 </main>
+
+<div class="modal fade" id="bedreservation" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="bedtitle"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="bedbody">
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% else %}
+<h4 class="text-center">Sory! Admin Cann't able to use this service</h4>
+{% endif %}
 {% endblock content %}
 
 {% block js %}
-const notifyScoket = new WebSocket(
-    'ws://'
-    + window.location.host
-    + '/ws/notify/'
-);
+$(document).ready(function() {
+    $('.reserve-btn').click(function() {
+        const bedbody = document.getElementById("bedbody");
+        const bedtitle = document.getElementById("bedtitle");
+        var bedId = $(this).data('id');
+        var csrftoken = getCookie('csrftoken');
+        
+        // Send AJAX request to the server
+        $.ajax({
+            url: '/hospitrack/bed-viewer', // Update with your server endpoint
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken,
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({
+                'bed_id': bedId,
+                // Additional data can be sent here if needed
+            }),
+            success: function(response) {
+                bedtitle.innerText = response.bedno;
+                bedbody.innerHTML = `
+                    <div class="row mb-4">
+                        <div class="col-lg-7 col-md-6 col-sm-12">
+                            <h5>Description</h5>
+                            <div class="card">
+                                <div class="card-body p-4">
+                                    <div class="row mb-4">
+                                        <div class="col-xl-12">
+                                            <p>${response.description}</p>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-6 col-sm-12">
+                            <form action="/hospitrack/bed-reservation-agent/${response.id}/" method="post">
+                                {% csrf_token %}
+                               
+                                <label for="msgans" class="form-label">Tell us why you need to reserve:</label>
+                                <textarea class="form-control mb-3" required name="reason" id="msgans" cols="30" rows="10"></textarea>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                `;
+            },
+            error: function(xhr, status, error) {
+                // Handle errors if any
+                console.error('Error:', error);
+            }
+        });
+    });
+});
 
-// on socket open
-notifyScoket.onopen = function (e) {
-    console.log('Socket successfully connected.');
-};
-
-// on socket close
-notifyScoket.onclose = function (e) {
-    console.log('Socket closed unexpectedly');
-};
-
-// on receiving message on group
-notifyScoket.onmessage = function (e) {
-    const data = JSON.parse(e.data);
-    const message = data.message;
-    print(message)
-    // Call the setMessage function to add the new li element
-    setMessage(message);
-
-};
-
-function setMessage(message) {
-    // Create a new li element
-    var newLi = document.createElement('li');
-
-    // Create a new anchor element
-    var newAnchor = document.createElement('a');
-    newAnchor.className = 'dropdown-item text-wrap';
-    newAnchor.href = '#';
-    newAnchor.textContent = message;
-
-    // Append the anchor element to the li element
-    newLi.appendChild(newAnchor);
-
-    // Get the ul element with the id "notify"
-    var ulElement = document.getElementById('notify');
-
-    // Append the new li element to the ul element
-    ulElement.appendChild(newLi);
-
-    // getting object of count
-    count = document.getElementById('bellCount').getAttribute('data-count');
-    document.getElementById('bellCount').setAttribute('data-count', parseInt(count) + 1);
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }
+
+$(document).ready(function(){
+    // Function to handle checkbox change
+    $('input[type="checkbox"]').change(function(){
+        var checkedRooms = []; // Array to store checked checkbox values
+        var showAvailable = $('#input6').is(':checked'); // Check if "Show Available Beds" checkbox is checked
+        var csrftoken = getCookie('csrftoken');
+        
+        // Loop through all checkboxes to find checked ones
+        $('input[type="checkbox"]').each(function(){
+            if($(this).is(':checked')){
+                checkedRooms.push($(this).attr('name')); // Add checked checkbox name to array
+            }
+        });
+
+        // Send AJAX request to backend with checked checkbox values and "Show Available Beds" state
+        $.ajax({
+            url: '/hospitrack/search-bed/', 
+            type: 'POST', // Use appropriate HTTP method
+            headers: {
+                'X-CSRFToken': csrftoken,
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({ rooms: checkedRooms, show_available: showAvailable }), // Send checked checkbox values and "Show Available Beds" state as JSON data
+            success: function(response) {
+                // Clear previous results
+                $('#results').empty();
+        
+                // Iterate through each bed data and create HTML for it
+                response.beds.forEach(function(bed) {
+                    // Create card element
+                    var cardDiv = $('<div class="col">' +
+                        '<div class="card border-dark mb-3" style="max-width: 18rem;">' +
+                        '<div class="card-header">' + bed.room_no + '</div>' +
+                        '<div class="card-body text-dark">' +
+                        '<h5 class="card-title">' + bed.bed_no + '</h5>' +
+                        '<p class="card-text">' + bed.description + '</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>');
+        
+                    // Add button based on reservation status
+                    if (bed.status === "Pending" || bed.status === "Reserve") {
+                        // If bed is reserved, disable the button
+                        cardDiv.find('.card-body').append('<button class="btn btn-danger w-100" disabled>Reserved</button>');
+                    } else {
+                        // If bed is available, add a reserve button
+                        cardDiv.find('.card-body').append('<button class="btn btn-dark w-100 reserve-btn" data-id="' + bed.id + '" data-bs-toggle="modal" data-bs-target="#bedreservation">Reserve me</button>');
+                    }
+        
+                    // Append the card element to the results div
+                    $('#results').append(cardDiv);
+                });
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error(xhr.responseText); // Log error response to the console
+                // You can provide appropriate error handling or feedback to the user
+            }
+        });
+        
+    });
+});
+
+$(document).ready(function(){
+    // Function to handle search input
+    $('#searchInput').on('input', function(){
+        var query = $(this).val().trim(); // Get the value of the search input
+        
+        // Send AJAX request to backend with search query
+        $.ajax({
+            url: '/hospitrack/search-bed-by-input/', 
+            type: 'POST', 
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({ query: query }), // Send search query as JSON data
+            success: function(response) {
+                // Clear previous results
+                $('#results').empty();
+        
+                // Iterate through each matching bed data and create HTML for it
+                response.beds.forEach(function(bed) {
+                    // Create card element
+                    var cardDiv = $('<div class="col">' +
+                        '<div class="card border-dark mb-3" style="max-width: 18rem;">' +
+                        '<div class="card-header">' + bed.room_no + '</div>' +
+                        '<div class="card-body text-dark">' +
+                        '<h5 class="card-title">' + bed.bed_no + '</h5>' +
+                        '<p class="card-text">' + bed.description + '</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>');
+        
+                    // Add button based on reservation status
+                    if (bed.status === "Pending" || bed.status === "Reserve") {
+                        // If bed is reserved, disable the button
+                        cardDiv.find('.card-body').append('<button class="btn btn-danger w-100" disabled>Reserved</button>');
+                    } else {
+                        // If bed is available, add a reserve button
+                        cardDiv.find('.card-body').append('<button class="btn btn-dark w-100 reserve-btn" data-id="' + bed.id + '" data-bs-toggle="modal" data-bs-target="#bedreservation">Reserve me</button>');
+                    }
+        
+                    // Append the card element to the results div
+                    $('#results').append(cardDiv);
+                });
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error(xhr.responseText); // Log error response to the console
+                // You can provide appropriate error handling or feedback to the user
+            }
+        });
+    });
+});
 
 
 {% endblock js %}

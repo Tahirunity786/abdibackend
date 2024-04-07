@@ -37,9 +37,15 @@
                             Services
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/hospitrack/bed-reservation">Bed Reservation</a></li>
+                            {% if request.user.account_type == "Patient" %}
                             <li><a class="dropdown-item" href="/hospitrack/doctor-appointments">Doctor Appointment</a></li>
-
+                            <li><a class="dropdown-item" href="/hospitrack/bed-reservation">Bed Reservation</a></li>
+                        {% elif request.user.account_type == "Doctor" %} <!-- Corrected spelling here -->
+                            <li><a class="dropdown-item" href="/hospitrack/bed-reservation">Bed Reservation</a></li>
+                        {% elif request.user.account_type == "Admin" %}
+                            <li><a class="dropdown-item" href="/hospitrack/doctor-appointments">Doctor Appointment</a></li>
+                        {% endif %}
+                        
                         </ul>
                     </li>
                     <li class="nav-item ms-3">
@@ -52,30 +58,25 @@
                 <div class="d-flex">
                     <li class="nav-item dropdown ps-4 pe-4" style="list-style: none; ">
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% if request.user.profile %}
+                            <img src="{{ request.user.profile.url }}" alt="" style="object-fit: cover;" width="40" height="40" class="rounded-pill">
+                        {% else %}
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                class="bi bi-person-fill" viewBox="0 0 16 16">
+                                 class="bi bi-person-fill" viewBox="0 0 16 16">
                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                             </svg>
+                        {% endif %}
                         </a>
                         <ul class="dropdown-menu" style="left: -110px;">
                             <li><a class="dropdown-item" href="/hospitrack/user/profile">Profile</a></li>
-                            <li><a class="dropdown-item" href="fqs-s">Help</a></li>
+                            <li><a class="dropdown-item" href="/hospitrack/fqs-s">Help</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="/hospitrack/user/logout">Logout</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item  ps-4 pe-4" style="list-style: none; border-left: 2px solid black;">
-                        <button class="nav-link" style="border: none; background-color: transparent; outline: none;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                                class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                            </svg>
-                        </button>
-
-                    </li>
+                    
                 </div>
             </div>
         </div>

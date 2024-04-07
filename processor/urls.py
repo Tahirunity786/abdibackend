@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from processor.views import index
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('controller/', include('core_admin.urls')),
     path('', index, name="home"),
     path('hospitrack/', include('core.urls')),
     path('hospitrack/', include('core_account.urls'))
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

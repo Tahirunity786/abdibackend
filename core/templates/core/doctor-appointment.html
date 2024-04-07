@@ -3,6 +3,7 @@
 
 {% load static %}
 {% block content %}
+{% if request.user.account_type == "Patient" or request.user.account_type == "Admin" %}
 <main class="container mt-5">
     <div class="row">
         <div class="col-lg-3 col-md-9 col-sm-12 pt-2 pb-2 ps-4 pe-4 bg-light" style="height: 500px;">
@@ -22,143 +23,309 @@
 
                     <ul style="list-style: none;">
                         <li class="mb-2">
-                            <span><input type="checkbox" id="cardiology" class="me-2"></span>
+                            <span><input type="checkbox" id="cardiology" class="me-2" name="Cardiology"></span>
                             <label style="font-weight: 600; cursor: pointer;" for="cardiology">Cardiology</label>
                         </li>
                         <li class="mb-2">
-                            <span><input type="checkbox" id="dermatology" class="me-2"></span>
+                            <span><input type="checkbox" id="dermatology" class="me-2" name="Dermatology"></span>
                             <label style="font-weight: 600; cursor: pointer;" for="dermatology">Dermatology</label>
                         </li>
                         <li class="mb-2">
-                            <span><input type="checkbox" id="endocrinology" class="me-2"></span>
+                            <span><input type="checkbox" id="endocrinology" class="me-2" name="Endocrinology"></span>
                             <label style="font-weight: 600; cursor: pointer;" for="endocrinology">Endocrinology</label>
                         </li>
                         <li class="mb-2">
-                            <span><input type="checkbox" id="gastroenterology" class="me-2"></span>
-                            <label style="font-weight: 600; cursor: pointer;"
-                                for="gastroenterology">Gastroenterology</label>
+                            <span><input type="checkbox" id="gastroenterology" class="me-2" name="Gastroenterology"></span>
+                            <label style="font-weight: 600; cursor: pointer;" for="gastroenterology">Gastroenterology</label>
                         </li>
                         <li class="mb-2">
-                            <span><input type="checkbox" id="ophthalmology" class="me-2"></span>
+                            <span><input type="checkbox" id="ophthalmology" class="me-2" name="Ophthalmology"></span>
                             <label style="font-weight: 600; cursor: pointer;" for="ophthalmology">Ophthalmology</label>
                         </li>
                     </ul>
+                    
                 </div>
             </div>
         </div>
         <div class="col-lg-9 col-md-9 col-sm-12">
+            {% for message in messages  %} 
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>Message : </strong> {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+        {% endfor %}
             <div class="row mb-5">
                 <div class="col-lg-8 col-md-8 sol-sm-8">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-dark" type="submit">Search</button>
-                    </form>
+            
+                        <input class="form-control me-2" type="search" placeholder="Search doctor" id="searchdInput" aria-label="Search">
+                        
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 text-end">
-                    <p class="fs-5">Available Specialist (100)</p>
+                    <p class="fs-5">Available Specialist ({{doctorscount}})</p>
                 </div>
             </div>
 
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 g-4" id="results">
+                {% for doctors in doctors %}
                 <div class="col">
                     <div class="card">
                         <img src="{% static 'media/hero.jpg' %}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Doctor name</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content.</p>
-                            <a href="#" class="btn btn-primary">Contact me</a>
+                            <h5 class="card-title">{{doctors.first_name}} {{doctors.last_name}}</h5>
+                            <p class="card-text">Dr. {{ doctors.first_name }} {{ doctors.last_name }} specializes in
+                                <b>{{ doctors.speciality }}</b> and is available to offer expert care. </p>
+                            <button class="doc-view btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctor" data-id="{{doctors.id}}">Contact
+                                me</button>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="{% static 'media/hero.jpg' %}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Doctor name</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content.</p>
-                            <a href="#" class="btn btn-primary">Contact me</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="{% static 'media/hero.jpg' %}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Doctor name</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content.</p>
-                            <a href="#" class="btn btn-primary">Contact me</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="{% static 'media/hero.jpg' %}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Doctor name</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content.</p>
-                            <a href="#" class="btn btn-primary">Contact me</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+
             </div>
         </div>
 </main>
+
+<div class="modal fade" id="doctor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="doctort"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="docbody">
+                
+            </div>
+
+        </div>
+    </div>
+</div>
+{% else %}
+<h1 class="text-center">Sorry doctor cann't book an appointment</h1>
+{% endif %}
 {% endblock content %}
+{% block js %}
+$(document).ready(function() {
+    $('.doc-view').click(function() {
+        const docbody = document.getElementById("docbody");
+        const doctor = document.getElementById("doctort");
+        var docid = $(this).data('id');
+        console.log(docid)
+        var csrftoken = getCookie('csrftoken');
+        
+        // Send AJAX request to the server
+        $.ajax({
+            url: '/hospitrack/doctor-user', // Update with your server endpoint
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken,
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({
+                'user_id': docid,
+                // Additional data can be sent here if needed
+            }),
+            success: function(response) {
+                doctor.innerText = "Doctor profile";
+                docbody.innerHTML = `
+                <div class="row">
+                    <div class="col-lg-7 col-md-7 col-sm-12">
+                        <div class="mb-4 text-center">
+                            <img src="{% static 'media/hero.jpg' %}" alt="" width="110" height="110"
+                                class="rounded-pill" style="object-fit: cover; margin-bottom: 10px;">
+                            <h4>${response.firstname} ${response.lastname}</h4>
+                        </div>
+                        <div class="mb-3">
+                            <h3>Experince</h3>
+                            <div class="card">
+                                <div class="card-body" id="experience">
+                                    {% if response.experience %}
+                                    {{ response.experience }}
+                                {% else %}
+                                    <p>HospiTrack has a professional available for our upcoming meeting, who exhibits exceptional expertise in their field.</p>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h3>Education</h3>
+                            <div class="card" id="education">
+                                <div class="card-body">
+                                    {% if response.Education %}
+                                    {{ response.Education }}
+                                {% else %}
+                                    <p>HospiTrack has highly qualified doctors for our patients.</p>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h3>Certificate</h3>
+                            <div class="card">
+                                <div class="card-body" id="certificate">
+                                    {% if response.Certification %}
+                                    {{ response.Certification }}
+                                {% else %}
+                                    <p>HospiTrack has certified doctors for our patients.</p>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h4 class="mb-4">Book appointment</h4>
+                        <form action="/hospitrack/appointment-agent/${response.id}/" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="input1" class="form-label">Full name</label>
+                                <input type="text" class="form-control" name="fullname" id="input1" placeholder="Full name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="input2" class="form-label">Phone no</label>
+                                <input type="tel" class="form-control" name="phno" id="input2" placeholder="+1 xxxxxxxxx" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="input3" class="form-label">Appointment day</label>
+                                <input type="date" class="form-control" name="appday" id="input3" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Reason for an
+                                    Appointment</label>
+                                <textarea required class="form-control" name="reason" id="exampleFormControlTextarea1"
+                                    style="resize: none;" rows="5"></textarea>
+                            </div>
+                            <button type="submit" class="w-100 btn btn-primary">Book Appointment</button>
+                        </form>
+                    </div>
+                </div>
+                `;
+            },
+            error: function(xhr, status, error) {
+                // Handle errors if any
+                console.error('Error:', error);
+            }
+        });
+    });
+});
 
-{% comment %} {% block js %}
-const notifyScoket = new WebSocket(
-'ws://'
-+ window.location.host
-+ '/ws/notify/'
-);
-
-// on socket open
-notifyScoket.onopen = function (e) {
-console.log('Socket successfully connected.');
-};
-
-// on socket close
-notifyScoket.onclose = function (e) {
-console.log('Socket closed unexpectedly');
-};
-
-// on receiving message on group
-notifyScoket.onmessage = function (e) {
-const data = JSON.parse(e.data);
-const message = data.message;
-print(message)
-// Call the setMessage function to add the new li element
-setMessage(message);
-
-};
-
-function setMessage(message) {
-// Create a new li element
-var newLi = document.createElement('li');
-
-// Create a new anchor element
-var newAnchor = document.createElement('a');
-newAnchor.className = 'dropdown-item text-wrap';
-newAnchor.href = '#';
-newAnchor.textContent = message;
-
-// Append the anchor element to the li element
-newLi.appendChild(newAnchor);
-
-// Get the ul element with the id "notify"
-var ulElement = document.getElementById('notify');
-
-// Append the new li element to the ul element
-ulElement.appendChild(newLi);
-
-// getting object of count
-count = document.getElementById('bellCount').getAttribute('data-count');
-document.getElementById('bellCount').setAttribute('data-count', parseInt(count) + 1);
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
 }
 
+$(document).ready(function(){
+    // Function to handle checkbox change
+    $('input[type="checkbox"]').change(function(){
+        var checkedSpecialities = []; // Array to store checked checkbox values
+        var showAvailableDocs = $('#input1').is(':checked'); // Check if "Show Available Doctors" checkbox is checked
+        var csrftoken = getCookie('csrftoken');
+        
+        // Loop through all checkboxes to find checked ones
+        $('input[type="checkbox"]').each(function(){
+            if($(this).is(':checked')){
+                checkedSpecialities.push($(this).attr('name')); // Add checked checkbox name to array
+            }
+        });
 
-{% endblock js %} {% endcomment %}
+        // Send AJAX request to backend with checked checkbox values and "Show Available Doctors" state
+        $.ajax({
+            url: '/hospitrack/search-doctor/', 
+            type: 'POST', 
+            headers: {
+                'X-CSRFToken': csrftoken,
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({ specialities: checkedSpecialities, show_availabledocs: showAvailableDocs }), // Send checked checkbox values and "Show Available Doctors" state as JSON data
+            success: function(response) {
+                console.log(response)
+                // Clear previous results
+                $('#results').empty();
+        
+                // Iterate through each doctor data and create HTML for it
+                response.doctors.forEach(function(doctor) {
+                    // Create card element
+                    var cardDiv = $('<div class="col">' +
+                        '<div class="card">' +
+                        '<img src="{% static 'media/hero.jpg' %}" class="card-img-top" alt="...">' +
+                        '<div class="card-body">' +
+                        '<h5 class="card-title">' + doctor.firstname + ' ' + doctor.lastname + '</h5>' +
+                        '<p class="card-text">Dr. ' + doctor.firstname + ' ' + doctor.lastname + ' specializes in <b>' + doctor.speciality + '</b> and is available to offer expert care. </p>' +
+                        '<button class="doc-view btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctor" data-id="' + doctor.id + '">Contact me</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>');
+        
+                    // Append the card element to the results div
+                    $('#results').append(cardDiv);
+                });
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error(xhr.responseText); // Log error response to the console
+                // You can provide appropriate error handling or feedback to the user
+            }
+        });
+        
+    });
+});
+
+
+
+
+$(document).ready(function(){
+    // Function to handle search input
+    $('#searchdInput').on('input', function(){
+        var query = $(this).val().trim(); // Get the value of the search input
+        
+        // Send AJAX request to backend with search query
+        $.ajax({
+            url: '/hospitrack/search-doctor-by-input/', 
+            type: 'POST', 
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({ query: query }), // Send search query as JSON data
+            success: function(response) {
+                // Clear previous results
+                $('#results').empty();
+        
+                // Iterate through each matching bed data and create HTML for it
+                response.doctors.forEach(function(doctor) {
+                    // Create card element
+                    var cardDiv = $('<div class="col">' +
+                        '<div class="card">' +
+                        '<img src="{% static 'media/hero.jpg' %}" class="card-img-top" alt="...">' +
+                        '<div class="card-body">' +
+                        '<h5 class="card-title">' + doctor.firstname + ' ' + doctor.lastname + '</h5>' +
+                        '<p class="card-text">Dr. ' + doctor.firstname + ' ' + doctor.lastname + ' specializes in <b>' + doctor.speciality + '</b> and is available to offer expert care. </p>' +
+                        '<button class="doc-view btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctor" data-id="' + doctor.id + '">Contact me</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>');
+        
+                    // Append the card element to the results div
+                    $('#results').append(cardDiv);
+                });
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error(xhr.responseText); // Log error response to the console
+                // You can provide appropriate error handling or feedback to the user
+            }
+        });
+    });
+});
+
+
+{% endblock js %}

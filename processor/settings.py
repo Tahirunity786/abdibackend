@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 # Import ASGI application from your routing module
 # from core.routing import application as routing_application
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,7 +34,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,14 +74,12 @@ TEMPLATES = [
         },
     },
 ]
-ASGI_APPLICATION = 'processor.asgi.application'
+# ASGI_APPLICATION = 'processor.asgi.application'
 
 AUTH_USER_MODEL = 'core_account.User'
-# WSGI_APPLICATION = 'processor.wsgi.application'
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': "channels.layers.InMemoryChannelLayer"
-    }
+WSGI_APPLICATION = 'processor.wsgi.application'
+MESSAGE_TAGS = {
+    messages.ERROR:'danger'
 }
 
 # Database
@@ -130,8 +128,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'usmanunity786@gmail.com'
+EMAIL_HOST_PASSWORD = 'faykiiyzpqieeegg'

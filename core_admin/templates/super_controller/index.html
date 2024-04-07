@@ -4,14 +4,14 @@
 {% block content %}
 
 
-
+{% if request.user.account_type == "Admin" %}
   <main id="main" class="main">
 
     <div class="pagetitle">
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="/controller/dashboard">Home</a></li>
           <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
@@ -28,21 +28,10 @@
             <div class="col-lg-6 col-md-6">
               <div class="card info-card sales-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Lorem</h6>
-                    </li>
 
-                    <li><a class="dropdown-item" href="#">Lorem</a></li>
-                    <li><a class="dropdown-item" href="#">Lorem</a></li>
-                    <li><a class="dropdown-item" href="#">Lorem</a></li>
-                  </ul>
-                </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Lorem <span>| Lorem</span></h5>
+                  <h5 class="card-title">User <span>| Patients</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -57,8 +46,9 @@
                     </div>
                     <div class="ps-3">
                       <h5>Total Patients</h5>
-                      <span class="text-success small pt-1 fw-bold">Lorem</span> <span
-                        class="text-muted small pt-2 ps-1">Lorem</span>
+                      
+                      <span class="text-primary small pt-1 fw-bold">{{user_data_p}}</span>
+                     
 
                     </div>
                   </div>
@@ -71,21 +61,10 @@
             <div class="col-lg-6 col-md-6">
               <div class="card info-card revenue-card">
 
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Lorem</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Lorem</a></li>
-                    <li><a class="dropdown-item" href="#">Lorem</a></li>
-                    <li><a class="dropdown-item" href="#">Lorem</a></li>
-                  </ul>
-                </div>
+                
 
                 <div class="card-body">
-                  <h5 class="card-title">Lorem <span>| Lorem</span></h5>
+                  <h5 class="card-title">User <span>| Doctors</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -99,8 +78,7 @@
                     </div>
                     <div class="ps-3">
                       <h5>Total Doctors</h5>
-                      <span class="text-success small pt-1 fw-bold">Lorem</span> <span
-                        class="text-muted small pt-2 ps-1">Lorem</span>
+                      <span class="text-success small pt-1 fw-bold">{{user_data_d}}</span>
 
                     </div>
                   </div>
@@ -115,153 +93,117 @@
     </section>
 
 
-    <div class="card" style="overflow-y: scroll;">
+    <div class="card" >
+      <h4 class="p-4">Upcoming Reservations</h4>
       <div class="card-body">
+        <div class="w-100 d-flex justify-content-between align-items-center">
         <h5 class="card-title">Bed Reservements</h5>
-
-        <!-- Default Table -->
+        <h5> <a href="/controller/beds">Go to Bed Reservements</a> </h5>
+      </div>
+        {% if bed_reservation %}
         <table class="table">
           <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Doctor</th>
-              <th scope="col">Time</th>
-              <th scope="col">Status</th>
-              <th scope="col">Update</th>
-              <th scope="col">Delete</th>
-            </tr>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">User</th>
+                  <th scope="col">Room no</th>
+                  <th scope="col">Bed no</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Status</th>
+              </tr>
           </thead>
           <tbody>
+            {% for beds in bed_reservation %}
             <tr>
-              <th scope="row">1</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td><button class="border-0" style="background-color: transparent;"><span
-                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
-              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
-                      class="bi bi-x-lg"></i></button></td>
+              <th scope="row">{{forloop.counter}}</th>
+              {% if beds.reservation.user.username%}
+              <td>{{beds.reservation.user.username}}</td>
+              {% else %}
+              <td>{{beds.reservation.user.first_name}}</td>
+              {% endif %}
+              <td>{{beds.room_no}}</td>
+              <td>{{beds.bed_no}}</td>
+              <td>{{beds.reservation.reservation_date}}</td>
+         
+              {% if beds.reservation.status == "Pending" %}
+              <td><span class="badge text-bg-warning">Pending</span></td>
+              
+              {% endif %}
+
+              
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td><button class="border-0" style="background-color: transparent;"><span
-                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
-              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
-                      class="bi bi-x-lg"></i></button></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td><button class="border-0" style="background-color: transparent;"><span
-                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
-              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
-                      class="bi bi-x-lg"></i></button></td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td><button class="border-0" style="background-color: transparent;"><span
-                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
-              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
-                      class="bi bi-x-lg"></i></button></td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td><button class="border-0" style="background-color: transparent;"><span
-                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
-              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
-                      class="bi bi-x-lg"></i></button></td>
-            </tr>
+            {% endfor %}
+              
           </tbody>
-        </table>
-        <!-- End Default Table Example -->
+      </table>
+      {% else %}
+      <h4>No appointments made by users</h4>
+      {% endif %}
       </div>
     </div>
 
 
 
-    <div class="card" style="overflow-y: scroll;">
+    <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Doctor Appointments</h5>
+        <h4 class="p-4">Upcoming Appointments</h4>
 
         <!-- Default Table -->
+        {% if appointments %}
         <table class="table">
           <thead>
+            
             <tr>
               <th scope="col">#</th>
+              <th scope="col">Patient</th>
               <th scope="col">Doctor</th>
-              <th scope="col">Time</th>
-              <th scope="col">Status</th>
-              <th scope="col">Update</th>
-              <th scope="col">Delete</th>
+              
+              <th scope="col">End Date</th>
+              <th scope="col">Appointments Status</th>
+             
             </tr>
+            
           </thead>
           <tbody>
+            
+            {% for appoint in appointments %}
             <tr>
-              <th scope="row">1</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td><button class="border-0" style="background-color: transparent;"><span
-                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
-              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
-                      class="bi bi-x-lg"></i></button></td>
+              <th scope="row">{{forloop.counter}}</th>
+              {% if appoint.user.username %}
+              <td>{{appoint.user.username}}</td>
+              {% else %}
+              <td>{{appoint.user.first_name}}</td>
+              {% endif %}
+
+              {% if appoint.doctor_user.username %}
+              <td>{{appoint.doctor_user.username}}</td>
+              {% else %}
+              <td>{{appoint.doctor_user.first_name}}</td>
+              {% endif %}
+
+
+              <td>{{appoint.scheduled_day}}</td>
+         
+              {% if appoint.status == "Ok" %}
+              <td><span class="badge text-bg-success">success</span></td>
+              {% elif appoint.status == "Decline" %}
+              <td><span class="badge text-bg-danger">Decline</span></td>
+              {% endif %}
+
+              
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td><button class="border-0" style="background-color: transparent;"><span
-                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
-              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
-                      class="bi bi-x-lg"></i></button></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td><button class="border-0" style="background-color: transparent;"><span
-                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
-              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
-                      class="bi bi-x-lg"></i></button></td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td><button class="border-0" style="background-color: transparent;"><span
-                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
-              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
-                      class="bi bi-x-lg"></i></button></td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td><button class="border-0" style="background-color: transparent;"><span
-                    class="badge bg-primary rounded-circle ms-2"><i class="bi bi-pencil-fill"></i></span></button></td>
-              <td> <button style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
-                      class="bi bi-x-lg"></i></button></td>
-            </tr>
+            {% endfor %}
+           
           </tbody>
         </table>
+        {% else %}
+        <h4>No appointments made by users</h4>
+        {% endif %}
         <!-- End Default Table Example -->
       </div>
     </div>
   </main><!-- End #main -->
-
+  {% else %}
+ <h1 class=" text-center" style="margin-top: 150px; margin-bottom: 150px;">You have not permission to access this page</h1>
+  {% endif %}
   {% endblock content %}

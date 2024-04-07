@@ -3,82 +3,148 @@
 
 {% block content %}
   
+{% if request.user.account_type == "Admin" %}
+<main id="main" class="main">
 
-  <main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Appointments</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/controller/dashboard">Home</a></li>
+        <li class="breadcrumb-item">Appointments</li>
 
-    <div class="pagetitle">
-      <h1>Appointments</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Appointments</li>
-          
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
 
-   
-    <div class="card" style="overflow-y: scroll;">
-      <div class="card-body">
-        <h5 class="card-title">Default Table</h5>
+  {% for message in messages  %} 
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <strong>Message : </strong> {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Appointments</h5>
 
-        <!-- Default Table -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Doctor</th>
-              <th scope="col">Time</th>
-              <th scope="col">Status</th>
-              <th scope="col">Update</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- End Default Table Example -->
+      <!-- Default Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Patient</th>
+            <th scope="col">Doctor</th>
+            <th scope="col">Phone no</th>
+            <th scope="col">Appointment Reason</th>
+            <th scope="col">Day</th>
+            <th scope="col">Status</th>
+     
+          </tr>
+        </thead>
+        <tbody>
+          {% for apps in app %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{apps.user.first_name}}</td>
+            <td>{{apps.doctor_user.first_name}}</td>
+            <td>{{apps.phone_no}}</td>
+            <td><button class="border-0 view-reason" style="background-color: transparent;" data-id="{{ apps.id }}" data-bs-toggle="modal" data-bs-target="#doc">
+              <span class="badge bg-primary rounded-circle ms-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                  </svg>
+              </span>
+          </button></td>
+            <td>{{apps.scheduled_day}}</td>
+            {% if apps.status == "Ok" %}
+            <td> <span class="badge rounded-pill text-bg-success">Success</span></td>
+              {% elif apps.status == "Decline" %}
+              <td> <span class="badge rounded-pill text-bg-danger">Danger</span></td>
+              {% elif apps.status == "Pending" %}
+              <td> <span class="badge rounded-pill text-bg-warning">Pending</span></td>
+              {% endif %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <!-- End Default Table Example -->
+    </div>
+  </div>
+</main><!-- End #main -->
+<div class="modal fade" id="doc" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="reasontitle"></h1>
+        
+      </div>
+      <div class="modal-body" id="reasonbody">
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
       </div>
     </div>
-  </main><!-- End #main -->
+  </div>
+</div>
+  {% else %}
+ <h1 class=" text-center" style="margin-top: 150px; margin-bottom: 150px;">You have not permission to access this page</h1>
+  {% endif %}
   {% endblock content %}
+
+
+  {% block js %}
+  document.addEventListener("DOMContentLoaded", function() {
+    var viewButtons = document.querySelectorAll('.view-reason');
+    const title = document.getElementById("reasontitle");
+    const bodyv = document.getElementById("reasonbody");
+    viewButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var contactId = this.getAttribute('data-id');
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/hospitrack/appointment-gainer-user', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        
+                        var responseData = JSON.parse(xhr.responseText);
+                        title.innerText = "Reason from Patient";
+                        bodyv.innerHTML = `
+                       <div class="container-fluid">
+                        <div class="mb-3">
+                            <h3>Reaon details:</h3>
+                        </div>
+                        <p>${responseData.reason}</p>
+                       </div>
+                        `;
+                    } else {
+                        console.error(xhr.status + ': ' + xhr.responseText);
+                        // Handle error
+                    }
+                }
+            };
+            xhr.send(JSON.stringify({ 'app_id': contactId }));
+        });
+    });
+});
+
+// Function to get CSRF token from cookies
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+  {% endblock js %}

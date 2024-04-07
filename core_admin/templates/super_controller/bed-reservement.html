@@ -1,0 +1,202 @@
+{% extends "super_controller/base/base_controller.html" %}
+{% block title %}Bed Reservements{% endblock title %}
+
+{% block content %}
+  
+{% if request.user.account_type == "Admin" %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Bed Reservements</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/controller/dashboard">Home</a></li>
+                <li class="breadcrumb-item">Bed Reservements</li>
+
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    {% for message in messages  %} 
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>Message : </strong> {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+        {% endfor %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Bed Reservements</h5>
+
+            <!-- Default Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Room no</th>
+                        <th scope="col">Bed no</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Accept</th>
+                        <th scope="col">Decline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reserve in beds %}
+                    {% if reserve.reservation  %}
+                    {% if reserve.reservation.status == "Pending" %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{reserve.reservation.user.first_name}}</td>
+                        <td>{{reserve.room_no}}</td>
+                        <td>{{reserve.bed_no}}</td>
+                        <td>{{reserve.reservation.reservation_date}}</td>
+                        <td>
+                            <button class="border-0 view-bed" style="background-color: transparent;" data-id="{{ reserve.id }}" data-bs-toggle="modal" data-bs-target="#bedviewer">
+                                <span class="badge bg-primary rounded-circle ms-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                                    </svg>
+                                </span>
+                            </button>
+                        </td>
+                        <td><span class="badge text-bg-warning">Pending</span></td>
+              
+              
+                        <td><a href="/controller/accept-reserve/{{ reserve.id }}/" class="border-0" style="background-color: transparent;"><span
+                                    class="badge bg-primary rounded-circle ms-2"><i
+                                        class="bi bi-check-lg"></i></span></a></td>
+                        <td> <a href="/controller/decline-reserve/{{ reserve.id }}/" style="border: none; background-color: transparent;"><span
+                                    class="badge bg-danger ms-2"><i class="bi bi-x-lg"></i></a></td>
+                    </tr>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- End Default Table Example -->
+        </div>
+    </div>
+
+    <div class="card" >
+        <div class="card-body">
+            <h5 class="card-title">Request</h5>
+
+            <!-- Default Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Room no</th>
+                        <th scope="col">Bed no</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                        <!-- <th scope="col">Accept</th>
+                        <th scope="col">Decline</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reserve in beds %}
+            {% if reserve.reservation %}
+                {% if reserve.reservation.status == "Reserve" or reserve.reservation.status == "Decline" %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ reserve.reservation.user.first_name }}</td>
+                <td>{{ reserve.room_no }}</td>
+                <td>{{ reserve.bed_no }}</td>
+                <td>{{ reserve.reservation.reservation_date }}</td>
+                <td>
+                    {% if reserve.reservation.status == "Reserve" %}
+                        <span class="badge text-bg-success">Reserved</span>
+                    {% elif reserve.reservation.status == "Decline" %}
+                        <span class="badge text-bg-danger">Declined</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+                </tbody>
+            </table>
+            <!-- End Default Table Example -->
+        </div>
+    </div>
+</main><!-- End #main -->
+<div class="modal fade" id="bedviewer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="bedviewerlabel"></h1>
+          
+        </div>
+        <div class="modal-body" id="bedview">
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+ <h1 class=" text-center" style="margin-top: 150px; margin-bottom: 150px;">You have not permission to access this page</h1>
+  {% endif %}
+  {% endblock content %}
+
+
+  {% block js %}
+  document.addEventListener("DOMContentLoaded", function() {
+    var viewButtons = document.querySelectorAll('.view-bed');
+    const title = document.getElementById("bedviewerlabel");
+    const bodyv = document.getElementById("bedview");
+    viewButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var bed_id = this.getAttribute('data-id');
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/controller/bed-viewer/', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        
+                        var responseData = JSON.parse(xhr.responseText);
+                        console.log(responseData)
+                        title.innerText = `${responseData.bedno}#`;
+                        bodyv.innerHTML = `
+                              <h4>Reason: Why Patient want to reserve bed?</h4>
+                              <p>Reason : ${responseData.reason}</p>
+                              <hr>
+                              <p class="mt-4"><i>Instruction for admin: <br>When you press accept buttom the email will sent to send to user who request for a bed reservation</i></p>
+                            `;
+                    } else {
+                        console.error(xhr.status + ': ' + xhr.responseText);
+                        // Handle error
+                    }
+                }
+            };
+            xhr.send(JSON.stringify({ 'bed_id': bed_id }));
+        });
+    });
+});
+
+// Function to get CSRF token from cookies
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+  {% endblock js %}

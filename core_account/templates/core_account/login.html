@@ -54,6 +54,12 @@
 
 <body>
     <div class="login-content bg-light">
+        {% for message in messages  %} 
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>Message : </strong> {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+        {% endfor %} 
         <!-- Button group for switching between User and Admin -->
         <div class="button-group">
             <button class="switchSignin btnActive">User</button>
@@ -73,8 +79,7 @@
             <div class="input-box">
                 <label for="signinPassword">Password</label>
                 <input type="password" id="signinPassword" name ="password" required>
-                <span class="passIcon" id="signinPassIconi"><i class="fa-solid fa-eye"></i></span>
-                <!-- Eye icon for showing password -->
+                
             </div>
             <!-- Checkbox for "Remember me" -->
             <div class="check-box">
@@ -97,16 +102,17 @@
         </form>
 
         <!-- Sign-up form (initially hidden) -->
-        <form action="#" class="signup-form display-none">
+        <form action="/hospitrack/user/login" method="post" class="signup-form display-none">
             <!-- Email input box -->
+            {% csrf_token %}
             <div class="input-box">
                 <label for="signinEmail">Email</label>
-                <input type="email" id="signinEmail" required>
+                <input type="email" id="signinEmail" name="email" required>
             </div>
             <!-- Password input box -->
             <div class="input-box">
                 <label for="signinPassword">Password</label>
-                <input type="password" id="signinPassword" required>
+                <input type="password" id="signinPassword" name ="password" required>
                 <span class="passIcon" id="signinPassIconi"><i class="fa-solid fa-eye"></i></span>
                 <!-- Eye icon for showing password -->
             </div>
@@ -125,7 +131,7 @@
             </div>
             <!-- Sign in link -->
             <div class="text-center mt-2">
-                <p>Don't have an account? <a href="#">SignUp</a></p>
+                <p>Don't have an account? <a href="/hospitrack/user/signup">SignUp</a></p>
             </div>
         </form>
     </div>

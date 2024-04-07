@@ -1,0 +1,258 @@
+{% extends "super_controller/base/base_controller.html" %}
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+{% if request.user.account_type == "Admin" %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Admin</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/controller/dashboard">Home</a></li>
+          <li class="breadcrumb-item">Admin</li>
+          
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-4">
+
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+{% if request.user.profile %}
+<img src="/media/{{request.user.profile }}" alt="Profile" class="rounded-circle">
+{% else %}
+<img src="https://dummyimage.com/70x70/000/fff" alt="Profile" class="rounded-circle">
+{% endif %}
+              <h2>{{request.user.first_name}} {{request.user.last_name}}</h2>
+
+             
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-xl-8">
+          {% for message in messages  %} 
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              <strong>Message : </strong> {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+  {% endfor %}
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+
+                <li class="nav-item">
+                  <button class="nav-link active" data-bs-toggle="tab"
+                    data-bs-target="#profile-overview">Overview</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                </li>
+
+                
+                <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change
+                    Password</button>
+                </li>
+
+              </ul>
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                  <h5 class="card-title">About</h5>
+              
+                  <h5 class="card-title">Profile Details</h5>
+              
+                  <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Username</div>
+                      <div class="col-lg-9 col-md-8">{% if request.user.username %}
+                        {{ request.user.username }}
+                    {% else %}
+                        N/A
+                    {% endif %}</div>
+                  </div>
+              
+                  <div class="row">
+                      <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                      <div class="col-lg-9 col-md-8">
+                          {% if request.user.first_name or request.user.last_name %}
+                              {{ request.user.first_name }} {{ request.user.last_name }}
+                          {% else %}
+                              N/A
+                          {% endif %}
+                      </div>
+                  </div>
+              
+                  <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Email</div>
+                      <div class="col-lg-9 col-md-8">
+                          {% if request.user.email %}
+                              {{ request.user.email }}
+                          {% else %}
+                              N/A
+                          {% endif %}
+                      </div>
+                  </div>
+              
+                  <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Birthday</div>
+                      <div class="col-lg-9 col-md-8">
+                          {% if request.user.date_of_birth %}
+                              {{ request.user.date_of_birth }}
+                          {% else %}
+                              N/A
+                          {% endif %}
+                      </div>
+                  </div>
+              
+                  <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Gender</div>
+                      <div class="col-lg-9 col-md-8">
+                          {% if request.user.gender %}
+                              {{ request.user.gender }}
+                          {% else %}
+                              N/A
+                          {% endif %}
+                      </div>
+                  </div>
+              
+                  <div class="row">
+                      <div class="col-lg-3 col-md-4 label">Phone</div>
+                      <div class="col-lg-9 col-md-8">
+                          {% if request.user.mobile_number %}
+                              {{ request.user.mobile_number }}
+                          {% else %}
+                              N/A
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+              
+
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+                  <!-- Profile Edit Form -->
+                  <form method="post" action="/controller/profile_updater/" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                      <label for="inputGroupFile01" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                      <div class="input-group mb-3">
+                          <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                          <input type="file" class="form-control" name="pic" id="inputGroupFile01">
+                      </div>
+                  </div>
+
+                    <div class="row mb-3">
+                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="username" type="text" class="form-control" id="username" placeholder="{{ request.user.userUser }}">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="firstname" class="col-md-4 col-lg-3 col-form-label">First Name</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="firstname" type="text" class="form-control" id="firstname" placeholder="{{ request.user.first_name }}">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="lastname" type="text" class="form-control" id="fullName" placeholder="{{ request.user.last_name }}">
+                      </div>
+                    </div>
+
+                    
+
+                    <div class="row mb-3">
+                      <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="email" type="text" class="form-control" id="email"
+                          placeholder="{{request.user.email}}">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="birthday" class="col-md-4 col-lg-3 col-form-label">Birthday</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="birthday" type="date" class="form-control" id="birthday">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="gen" class="col-md-4 col-lg-3 col-form-label">Gender</label>
+                      <div class="col-md-8 col-lg-9">
+                          <select class="form-select" name="gender" id="gen" aria-label="Default select example">
+                              <option selected disabled>Choose Gender</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="Not Confirmed">Not Confirmed</option>
+                          </select>
+                      </div>
+                  </div>
+                    <div class="row mb-3">
+                      <label for="phno" class="col-md-4 col-lg-3 col-form-label">Phone no</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="phno" type="tem" class="form-control" id="phno" placeholder={{request.user.mobile_number}}>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </form><!-- End Profile Edit Form -->
+
+                </div>
+
+                
+
+                <div class="tab-pane fade pt-3" id="profile-change-password">
+                  <!-- Change Password Form -->
+                  <form method="post" action="/hospitrack/user/profile/pass/update">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="password" type="password" class="form-control"  name="prepass" id="currentPassword">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="newpassword" type="password" class="form-control"  name="newpass" id="newPassword">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="renewpassword" type="password" class="form-control" name="confirmpass" id="renewPassword">
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Change Password</button>
+                    </div>
+                  </form><!-- End Change Password Form -->
+
+                </div>
+
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+  {% else %}
+  <h1 class=" text-center" style="margin-top: 150px; margin-bottom: 150px;">You have not permission to access this page</h1>
+   {% endif %}
+  {% endblock content %}

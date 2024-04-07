@@ -3,85 +3,201 @@
 
 {% block content %}
 
+{% if request.user.account_type == "Admin" %}
+<main id="main" class="main">
 
-  <main id="main" class="main">
+  <div class="pagetitle">
+    <h1>Doctors</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/controller/dashboard">Home</a></li>
+        <li class="breadcrumb-item">Doctors</li>
 
-    <div class="pagetitle">
-      <h1>Doctors</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Doctors</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
 
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+  <button type="button" class="btn btn-secondary mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add
+    Doctors</button>
 
-    <div class="card" style="overflow-y: scroll;">
-      <div class="card-body">
-        <h5 class="card-title">Default Table</h5>
 
-        <!-- Default Table -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Doctor</th>
-              <th scope="col">Time</th>
-              <th scope="col">Status</th>
-              <th scope="col">Update</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td> <span class="badge bg-primary rounded-circle ms-3"><i class="bi bi-pencil-fill"></i></span></td>
-              <td> <span class="badge bg-danger ms-3"><i class="bi bi-x-lg"></i></td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- End Default Table Example -->
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Doctors</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/controller/admin/doctor/signup/Doctor/" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="modal-body">
+          <!-- Doctor registration form (initially hidden) -->
+            <div class="row">
+              <div class="col">
+                <div class="input-group mb-3">
+
+                  <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" placeholder="First Name" name="firstname">
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-group mb-3">
+
+                  <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" placeholder="Last Name" name="lastname">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="input-group mb-3">
+
+                  <input type="email" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" placeholder="Email" name="email">
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-group mb-3">
+
+                  <input type="tel" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" placeholder="Phone No" name="phno">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="input-group mb-3">
+
+                  <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" placeholder="Speciality" name="sp">
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-group mb-3">
+                    <label for="file" class="form-label mt-2 me-2" style="display: block;">CV</label>
+                  <input type="file" class="form-control" id="file" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="cvfile">
+                </div>
+              </div>
+            </div>
+
+            <div class="input-group mb-3">
+
+              <input type="number" name="licensenumber" class="form-control"  placeholder="Licence number">
+            </div>
+            <div class="input-group mb-3">
+
+              <input type="password" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default" placeholder="Password">
+            </div>
+            
+             </div>
+            <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 
+  {% for message in messages  %} 
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      <strong>Message : </strong> {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
 
+  <div class="card mt-3" >
+    <div class="card-body">
+      <h5 class="card-title">Pending Medical Requests</h5>
 
-  </main><!-- End #main -->
+      <!-- Default Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Licence no</th>
+            <th scope="col">Speciality</th>
+            <th scope="col">CV</th>
+            <th scope="col">Status</th>
+            <th scope="col">Verify</th>
+         
+          </tr>
+        </thead>
+        <tbody>
+          {% for doc in doctors %}
+          {% if not doc.medical_verified %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ doc.first_name }}</td>
+            <td>{{ doc.last_name }}</td>
+            <td>{{ doc.email }}</td>
+            <td>{{ doc.license_number }}</td>
+            <td>{{ doc.speciality }}</td>
+            <td><a href="/media/{{ doc.doctor_cv }}">File <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+            </svg></a></td>
+            <td><span class="badge text-bg-warning">Pending</span></td>
+            <td><a href="/controller/admin/doctor/verify/{{doc.id}}/Doctor/" class="border-0" style="background-color: transparent;"><span
+                  class="badge bg-primary rounded-circle ms-2"><i class="bi bi-check-lg"></i></span></a></td>
+            <!-- <td> <a style="border: none; background-color: transparent;"><span class="badge bg-danger ms-2"><i
+                    class="bi bi-x-lg"></i></a></td> -->
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+      <!-- End Default Table Example -->
+    </div>
+  </div>
+  <div class="card mt-3" style="overflow-y: scroll;">
+    <div class="card-body">
+      <h5 class="card-title">Verify Doctors</h5>
 
+      <!-- Default Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Licence no</th>
+            <th scope="col">Speciality</th>
+            <th scope="col">CV</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for doc in doctors %}
+          {% if doc.medical_verified %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ doc.first_name }}</td>
+            <td>{{ doc.last_name }}</td>
+            <td>{{ doc.email }}</td>
+            <td>{{ doc.license_number }}</td>
+            <td>{{ doc.speciality }}</td>
+            <td><a href="/media/{{ doc.doctor_cv }}">File <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+            </svg></a></td>
+            <td><span class="badge text-bg-success">verified</span></td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+      <!-- End Default Table Example -->
+    </div>
+  </div>
+</main><!-- End #main -->
+
+  {% else %}
+ <h1 class=" text-center" style="margin-top: 150px; margin-bottom: 150px;">You have not permission to access this page</h1>
+  {% endif %}
   {% endblock content %}
